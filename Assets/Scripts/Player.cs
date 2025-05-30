@@ -7,14 +7,14 @@ public class Player : MonoBehaviour
     private bool pl = true;//プレイヤーがタスクを行っているか
     [SerializeField] private GameObject cleantask;//清掃タスク
     private bool csencer;//清掃タスクの表示と非表示に使用
-    [SerializeField] private GameObject atask;//テストタスク
+    //[SerializeField] private GameObject atask;//テストタスク
     private bool tsencer;//テストタスクの表示と非表示に使用
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         cleantask.SetActive(false);
-        atask.SetActive(false);
+       // atask.SetActive(false);
     }
 
     // Update is called once per frame
@@ -104,12 +104,12 @@ public class Player : MonoBehaviour
         //タスク開始
         if (Input.GetKeyDown(KeyCode.Return) && tsencer == true)
         {
-            atask.SetActive(true);
+            //atask.SetActive(true);
         }
         //タスク終了
         if (Input.GetKeyDown(KeyCode.Space) && tsencer == true) 
         {
-            atask.SetActive(false);
+            //atask.SetActive(false);
         }
     }
 
