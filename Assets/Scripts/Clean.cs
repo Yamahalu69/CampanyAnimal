@@ -17,7 +17,7 @@ public class Clean : MonoBehaviour
         if (Input.GetKeyDown(keycount))
         {
             keypress++;
-            if (keypress == 10)
+            if (keypress == 180)
             {
                 Debug.Log("èIÇÌÇË");
             }
