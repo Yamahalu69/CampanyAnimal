@@ -4,24 +4,32 @@ using UnityEngine;
 
 public class RegisterTask : MonoBehaviour
 {
+    [Header("単体起動用か")]
+    public bool isDebug;
+
     public bool isPlaying;
 
     List<KeyCode> arrowsList = new List<KeyCode>();
 
+    [Header("タスク完了に必要な矢印入力回数")]
     public int arrowsAmount;
 
     private int counter = 0;
 
-    //矢印表示用キャンバス
+    [Header("矢印表示用キャンバス")]
     public GameObject canvas;
 
+    [Header("矢印表示オブジェクト")]
     public GameObject arrowPrefab;
 
-    public List<SwitchSprite> arrowSprites = new List<SwitchSprite>();
+    [Header("矢印表示の位置")]
+    public Transform[] transforms = new Transform[4];
+
+    private List<SwitchSprite> arrowSprites = new List<SwitchSprite>();
 
     void Start()
     {
-        StartTask();
+        if (isDebug) StartTask();
     }
 
     void Update()
@@ -95,11 +103,13 @@ public class RegisterTask : MonoBehaviour
             //矢印表示用オブジェクト生成
             for (int i = 0; i < 4; i++)
             {
-                Vector3 pos = new(1510f - 450 * i, 200f, 0f);
+                //Vector3 pos = new(1510f - 450 * i, 200f, 0f);
+                Vector3 pos = transforms[i].position;
 
-                GameObject arrow = Instantiate(arrowPrefab, pos, Quaternion.identity);
+                GameObject arrow = Instantiate(arrowPrefab, Vector2.zero, Quaternion.identity);
                 arrowSprites.Add(arrow.GetComponent<SwitchSprite>());
                 arrow.transform.SetParent(canvas.transform);
+                arrow.transform.localPosition = pos;
             }
         }
 

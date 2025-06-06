@@ -2,25 +2,34 @@ using UnityEngine;
 
 public class StockingTask : MonoBehaviour
 {
+    [Header("単体起動用か")]
+    public bool isDebug;
+
     public bool isPlaying;
 
     [SerializeField]
-    [Tooltip("タスクの回数")]
+    [Header("タスクの回数")]
     int task;
 
     [SerializeField]
-    [Tooltip("バーの速さ")]
+    [Header("バーの速さ")]
     float speed;
 
     [SerializeField]
-    [Tooltip("行動不能時間")]
+    [Header("行動不能時間")]
     float stunTime;
 
     [SerializeField]
-    [Tooltip("バー表示用キャンバス")]
+    [Header("バー表示用キャンバス")]
     GameObject canvas;
 
+    [Header("サイドバーオブジェクト")]
     public GameObject sideBarPrefab;
+
+    [Header("サイドバーを中央からどれだけずらすか")]
+    public Vector2 offset;
+
+
 
     private RectTransform sideBar;
     private RectTransform slider;
@@ -30,17 +39,18 @@ public class StockingTask : MonoBehaviour
 
     private bool isPlayable;
     private float timer;
+    private bool goUp;
 
     void Start()
     {
-        StartTask();
+        if (isDebug) StartTask();
     }
 
     void Update()
     {
         if (!isPlaying) return;
 
-        if (Input.GetKeyDown(KeyCode.Escape) && isPlayable)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isPlayable)
         {
             InterruptTask();
         }
@@ -61,6 +71,7 @@ public class StockingTask : MonoBehaviour
                     Debug.Log("タスク完了");
                     isPlaying = false;
                 }
+                RandomMoveTarget();
             }
             else
             {
@@ -78,7 +89,7 @@ public class StockingTask : MonoBehaviour
         if (!isPlayable && isPlaying)
         {
             timer += Time.deltaTime;
-            Debug.Log(timer);
+
             if (timer >= stunTime)
             {
                 isPlayable = true;
@@ -88,26 +99,49 @@ public class StockingTask : MonoBehaviour
         if (isPlayable && isPlaying)
         {
             //スライダーの移動
-            float y = slider.localPosition.y + speed;
-            slider.localPosition = new Vector2(0, y);
-            if (slider.localPosition.y > sideBar.rect.height / 2)
+            if (goUp)
             {
-                slider.localPosition = new Vector2(0, -sideBar.rect.height / 2);
+                float y = slider.localPosition.y + speed;
+                slider.localPosition = new Vector2(0, y);
+                if (slider.localPosition.y >= sideBar.rect.height / 2)
+                {
+                    goUp = false;
+                }
+            }
+            else
+            {
+                float y = slider.localPosition.y - speed;
+                slider.localPosition = new Vector2 (0, y);
+                if(slider.localPosition.y <= -sideBar.rect.height / 2)
+                {
+                    goUp = true;
+                }
             }
         }
     }
 
     public void StartTask()
     {
-        GameObject sideBarObject = Instantiate(sideBarPrefab, new(1560f, 540f), Quaternion.identity);
+        //初期化処理
+        Vector2 pos = new Vector2(Screen.width / 2, Screen.height / 2) + offset;
+        GameObject sideBarObject = Instantiate(sideBarPrefab, pos, Quaternion.identity);
         sideBar = sideBarObject.GetComponent<RectTransform>();
         target = sideBar.Find("TargetPoint").gameObject.GetComponent<RectTransform>();
         slider = sideBar.Find("Slider").gameObject.GetComponent<RectTransform>();
         sideBar.SetParent(canvas.GetComponent<Transform>());
+        Random.InitState(System.DateTime.Now.Millisecond);
+        RandomMoveTarget();
 
         isPlaying = true;
         isPlayable = true;
         counter = 0;
+    }
+
+    void RandomMoveTarget()
+    {
+        float y = Random.Range(sideBar.rect.height / 2 - target.rect.height / 2, -sideBar.rect.height / 2 + target.rect.height / 2);
+
+        target.transform.localPosition = new Vector2 (0, y);
     }
 
     void InterruptTask()
