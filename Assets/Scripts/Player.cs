@@ -1,3 +1,5 @@
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,14 +9,15 @@ public class Player : MonoBehaviour
     private bool pl = true;//プレイヤーがタスクを行っているか
     [SerializeField] private GameObject cleantask;//清掃タスク
     private bool csencer;//清掃タスクの表示と非表示に使用
-    //[SerializeField] private GameObject atask;//テストタスク
-    private bool tsencer;//テストタスクの表示と非表示に使用
+    [SerializeField] private GameObject displaytask;//前陳タスク
+    private bool dsencer;//前陳タスクの表示と非表示に使用
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        pl= true;
         cleantask.SetActive(false);
-       // atask.SetActive(false);
+        displaytask.SetActive(false);
     }
 
     // Update is called once per frame
@@ -22,10 +25,10 @@ public class Player : MonoBehaviour
     {
        
         Playermove();//プレイヤーの移動操作
-
+        
         CleanTask();//掃除タスク開始と終了
 
-        ATask();//ATask開始と終了
+        DisplayTask();//陳列タスク開始と終了
         
         
         //ゲーム終了
@@ -44,7 +47,7 @@ public class Player : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag("task"))
         {
-            tsencer = true;
+            dsencer = true;
         }
         
     }
@@ -56,33 +59,42 @@ public class Player : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("task"))
         {
-            tsencer = false;
+            dsencer = false;
         }
     }
 
     private void Playermove()
     {
-        float movex = 0;
-        float movez = 0;
-        //四方向移動
-        if (Input.GetKey(KeyCode.W))
+        Vector3 vector =new Vector3(0,0,0);
+        if(pl==true)
         {
-            movez = sp;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            movez = -sp;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            movex = sp;
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            movex = -sp;
+            //四方向移動
+            if (Input.GetKey(KeyCode.W))
+            {
+                vector.z = 1.0f;
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                vector.z = -1.0f;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                vector.x = 1.0f;
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                vector.x = -1.0f;
+            }
         }
 
-        transform.Translate(new Vector3(movex, 0, movez));
+        float length = Mathf.Sqrt((vector.x * vector.x) + (vector.z * vector.z));
+
+        if ((0 < length))
+        {
+            vector = vector / length;
+            vector *= sp;
+            transform.position += vector;
+        }
     }
 
     private void CleanTask()
@@ -92,24 +104,28 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return) && csencer == true) 
         {
             cleantask.SetActive(true);
+            pl = false;
         }
         //タスク中断
         if (Input.GetKeyDown(KeyCode.Space) && csencer == true)
         {
             cleantask.SetActive(false);
+            pl = true;
         }
     }
-    private void ATask()
+    private void DisplayTask()
     {
         //タスク開始
-        if (Input.GetKeyDown(KeyCode.Return) && tsencer == true)
+        if (Input.GetKeyDown(KeyCode.Return) && dsencer == true)
         {
-            //atask.SetActive(true);
+            displaytask.SetActive(true);
+            pl= false;
         }
         //タスク終了
-        if (Input.GetKeyDown(KeyCode.Space) && tsencer == true) 
+        if (Input.GetKeyDown(KeyCode.Space) && dsencer == true) 
         {
-            //atask.SetActive(false);
+            displaytask.SetActive(false);
+            pl = true;
         }
     }
 
