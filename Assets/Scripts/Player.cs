@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     private bool csencer;//清掃タスクの表示と非表示に使用
     [SerializeField] private GameObject displaytask;//前陳タスク
     private bool dsencer;//前陳タスクの表示と非表示に使用
+    [SerializeField] RegisterTask RegisterTask;//レジ打ちタスク
+    [SerializeField] StockingTask StockingTask;//入荷タスク
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,7 +31,10 @@ public class Player : MonoBehaviour
         CleanTask();//掃除タスク開始と終了
 
         DisplayTask();//陳列タスク開始と終了
-        
+
+        Register();//レジ打ちタスク
+
+        Arrival();//入荷タスク
         
         //ゲーム終了
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -44,18 +49,18 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("clean"))
         {
             csencer = true;
-        }
-        else if(collision.gameObject.CompareTag("task"))
+        }     
+        else if (collision.gameObject.CompareTag("task"))
         {
             dsencer = true;
         }
-        
+
     }
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("clean"))
         {
-            csencer = false; 
+            csencer = false;
         }
         else if (collision.gameObject.CompareTag("task"))
         {
@@ -112,6 +117,11 @@ public class Player : MonoBehaviour
             cleantask.SetActive(false);
             pl = true;
         }
+        //タスク完了
+        if(cleantask == null)
+        {
+            pl = true;
+        }
     }
     private void DisplayTask()
     {
@@ -126,6 +136,21 @@ public class Player : MonoBehaviour
         {
             displaytask.SetActive(false);
             pl = true;
+        }
+    }
+    private void Arrival()
+    {
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            StockingTask.StartTask();
+        }
+    }
+
+    private void Register()
+    {
+        if(Input.GetKeyDown (KeyCode.Return))
+        {
+            RegisterTask.StartTask();
         }
     }
 
