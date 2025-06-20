@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class Display : MonoBehaviour
 {
-    [SerializeField] Image bar;
-    [SerializeField] Image goal;
+    [SerializeField] Image bar;//移動するバー
+    [SerializeField] Image goal;//止める位置
     [SerializeField] private float movedistance = 200f;//高さ
     [SerializeField] private float movesp = 2f;//上昇スピード
     [SerializeField] private float downsp = 2f;//加工スピード
@@ -18,6 +18,7 @@ public class Display : MonoBehaviour
     private bool enterlock = false;//下降中かどうか
     private bool islock = false;//入力がロックされているか
     private bool clear = false;//ゴールにバーがあるかどうか
+
     private void Start()
     {
         if (bar != null)
@@ -27,11 +28,26 @@ public class Display : MonoBehaviour
         }
     }
 
+    private bool Ingoal()
+    {
+        RectTransform goalrt = goal.rectTransform;
+
+        Vector3[] corners = new Vector3[4];
+        goalrt.GetWorldCorners(corners);
+
+        float goaltop = corners[1].y;
+        float goalbottom = corners[0].y;
+
+        float bary = bar.rectTransform.position.y;
+
+        return bary >= goalbottom && bary <= goaltop;
+    }
+
     private void Update()
     {
         if (clear) return;
         //バー上昇
-        if (!islock && !enterlock  && Input.GetKey(KeyCode.Return))
+        if (!islock && !enterlock && Input.GetKey(KeyCode.Return))
         {
             curr += movesp * Time.deltaTime;
 
@@ -44,17 +60,17 @@ public class Display : MonoBehaviour
         }
 
         //Enterキーを離すと下降開始
-        if(!islock && !Input.GetKey(KeyCode.Return) && curr > 0f)
+        if (!islock && !Input.GetKey(KeyCode.Return) && curr > 0f)
         {
             enterlock = true;
             islock = true;
         }
 
         //バーが下降中
-        if(enterlock)
+        if (enterlock)
         {
-            curr -=downsp * Time.deltaTime;
-            if(curr <= 0f)
+            curr -= downsp * Time.deltaTime;
+            if (curr <= 0f)
             {
                 curr = 0f;
                 enterlock = false;
@@ -63,26 +79,19 @@ public class Display : MonoBehaviour
         }
 
         //バーの位置を更新
-        if(bar != null)
+        if (bar != null)
         {
             bar.rectTransform.anchoredPosition = new Vector2(farstpos.x, farstpos.y + curr);
         }
 
-        bool ingoalrange = Ingoal();
         //バーがゴールに到達しているかどうか
-        if (ingoalrange && Input.GetKeyUp(KeyCode.Return))
+        if (Ingoal() && !enterlock && Input.GetKeyUp(KeyCode.Return))
         {
             clear = true;
             this.gameObject.SetActive(false);
         }
     }
 
-    private bool Ingoal()
-    {
-        float goaltop = goal.rectTransform.anchoredPosition.y;
-        float goalbottom = goaltop - goal.rectTransform.rect.height;
 
-        return curr + farstpos.y >= goalbottom && curr+farstpos.y <= goaltop;
-    }
 
 }

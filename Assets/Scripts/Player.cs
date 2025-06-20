@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private bool dsencer;//前陳タスクの表示と非表示に使用
     [SerializeField] RegisterTask RegisterTask;//レジ打ちタスク
     [SerializeField] StockingTask StockingTask;//入荷タスク
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

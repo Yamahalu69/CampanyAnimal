@@ -1,44 +1,49 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Clean : MonoBehaviour
 {
-    [SerializeField] private Image bar;
+    [SerializeField] private Slider bar;
     [SerializeField] private GameObject cleantask;
-    [SerializeField,Header("ƒ^ƒXƒNŠ®—¹‚Ü‚Å‚Ì“ü—Í‰ñ”")] private int count;//“ü—Í‰ñ”
+    [SerializeField, Header("Å‘å“ü—Í‰ñ”")] private int maxcount;
+     private int count;//Œ»Ý‚Ì“ü—Í‰ñ”
 
-    private int keypress = 0;
-    private bool isclean = false;
+    private bool hascompleted = false;
 
     private void Start()
     {
         if(bar != null)
-           bar.fillAmount = 0f;
+        {
+            bar.value = 0f;
+        }
+        if ((cleantask !=null))
+        {
+            cleantask.SetActive(true);
+        }
     }
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
-        if (bar == null || isclean) return;
+        if (hascompleted) return;
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            keypress++;
-            bar.fillAmount = Mathf.Clamp01((float)keypress / count);
-            if (keypress >= count)
+            count++;
+
+            float progress = (float)count / maxcount;
+            bar.value = Mathf.Clamp01(progress);
+
+            if (count >= maxcount)
             {
-                isclean = true;
-                StartCoroutine(Delay(3f));
+                if (cleantask != null)
+                {
+                    cleantask.SetActive(false);
+                    hascompleted = true;
+                }
             }
         }
 
-    }
-    
-
-    IEnumerator Delay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        if (cleantask != null)
-            Destroy(cleantask);
-    }
+    }   
 }
