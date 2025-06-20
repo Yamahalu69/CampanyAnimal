@@ -10,8 +10,8 @@ public class Display : MonoBehaviour
     [SerializeField] Image bar;//移動するバー
     [SerializeField] Image goal;//止める位置
     [SerializeField] private float movedistance = 200f;//高さ
-    [SerializeField] private float movesp = 2f;//上昇スピード
-    [SerializeField] private float downsp = 2f;//加工スピード
+    [SerializeField, Header("バーの上昇スピード")] private float movesp = 2f;//上昇スピード
+    [SerializeField, Header("バーの下降スピード")] private float downsp = 2f;//加工スピード
 
     private Vector2 farstpos;
     private float curr = 0f;
@@ -31,14 +31,14 @@ public class Display : MonoBehaviour
     private bool Ingoal()
     {
         RectTransform goalrt = goal.rectTransform;
+        RectTransform barrt = bar.rectTransform;
 
-        Vector3[] corners = new Vector3[4];
-        goalrt.GetWorldCorners(corners);
+        float bary = barrt.anchoredPosition.y;
+        float goaly = goalrt.anchoredPosition.y;
+        float goalheight = goalrt.rect.height;
 
-        float goaltop = corners[1].y;
-        float goalbottom = corners[0].y;
-
-        float bary = bar.rectTransform.position.y;
+        float goaltop = goaly + goalheight / 2f;
+        float goalbottom = goaly - goalheight / 2f;
 
         return bary >= goalbottom && bary <= goaltop;
     }
@@ -46,6 +46,12 @@ public class Display : MonoBehaviour
     private void Update()
     {
         if (clear) return;
+
+        if(!enterlock &&islock&&Ingoal())
+        {
+            clear = true;
+            this.gameObject.SetActive(false);
+        }
         //バー上昇
         if (!islock && !enterlock && Input.GetKey(KeyCode.Return))
         {

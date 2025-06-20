@@ -185,7 +185,7 @@ public class Player : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.LeftShift)==true)
         {
-            pl= false;
+            pl= true;
         }
     }
 

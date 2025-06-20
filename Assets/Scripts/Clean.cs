@@ -12,6 +12,10 @@ public class Clean : MonoBehaviour
 
     private bool hascompleted = false;
 
+    [SerializeField, Header("‘€ì‰Â”\‚Ü‚Å‚Ì’x‰„•b”")] private float delay = 0.5f;
+
+    private float timer = 0f;
+    private bool inputenabled = false;
     private void Start()
     {
         if(bar != null)
@@ -22,11 +26,23 @@ public class Clean : MonoBehaviour
         {
             cleantask.SetActive(true);
         }
+        timer = 0f;
+        inputenabled = false;
     }
 
     private void Update()
     {
         if (hascompleted) return;
+
+        if(!inputenabled)
+        {
+            timer += Time.deltaTime;
+            if(timer>=delay)
+            {
+                inputenabled = true;
+            }
+            return;
+        }
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
