@@ -29,7 +29,7 @@ public class StockingTask : MonoBehaviour
     [Header("サイドバーを中央からどれだけずらすか")]
     public Vector2 offset;
 
-
+    private GameObject barGO;
 
     private RectTransform sideBar;
     private RectTransform slider;
@@ -69,6 +69,7 @@ public class StockingTask : MonoBehaviour
                 {
                     //タスク完了
                     Debug.Log("タスク完了");
+                    StopTask();
                     isPlaying = false;
                 }
                 RandomMoveTarget();
@@ -132,9 +133,16 @@ public class StockingTask : MonoBehaviour
         Random.InitState(System.DateTime.Now.Millisecond);
         RandomMoveTarget();
 
+        barGO = sideBarObject;
+
         isPlaying = true;
         isPlayable = true;
         counter = 0;
+    }
+
+    void StopTask()
+    {
+        Destroy(barGO);
     }
 
     void RandomMoveTarget()
@@ -147,6 +155,7 @@ public class StockingTask : MonoBehaviour
     void InterruptTask()
     {
         Debug.Log("ゲームを中断しました");
+        StopTask();
         isPlaying = false;
     }
 }
