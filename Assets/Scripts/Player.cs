@@ -11,9 +11,11 @@ public class Player : MonoBehaviour
     private bool csencer;//清掃タスクの表示と非表示に使用
     [SerializeField] private GameObject displaytask;//前陳タスク
     private bool dsencer;//前陳タスクの表示と非表示に使用
-    [SerializeField] RegisterTask RegisterTask;//レジ打ちタスク
-    [SerializeField] StockingTask StockingTask;//入荷タスク
-    
+    [SerializeField] RegisterTask registerTask;//レジ打ちタスク
+    private bool rsencer;//レジ打ちタスクの表示と非表示
+    [SerializeField] StockingTask stockingTask;//入荷タスク
+    private bool ssencer;//入荷タスクの表示と非表示
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
         pl= true;
         cleantask.SetActive(false);
         displaytask.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -35,7 +38,7 @@ public class Player : MonoBehaviour
 
         Register();//レジ打ちタスク
 
-        Arrival();//入荷タスク
+        Stocking();//入荷タスク
         
         //ゲーム終了
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -47,25 +50,42 @@ public class Player : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("clean"))
+        if (collision.gameObject.CompareTag("cleaning"))
         {
             csencer = true;
         }     
-        else if (collision.gameObject.CompareTag("task"))
+        else if (collision.gameObject.CompareTag("display"))
         {
             dsencer = true;
         }
+        else if(collision.gameObject.CompareTag("register"))
+        {
+            rsencer = true;
+        }
+        else if(collision.gameObject.CompareTag("stocking"))
+        {
+            ssencer = true;
+        }
+
 
     }
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("clean"))
+        if (collision.gameObject.CompareTag("cleaning"))
         {
             csencer = false;
         }
-        else if (collision.gameObject.CompareTag("task"))
+        else if (collision.gameObject.CompareTag("display"))
         {
             dsencer = false;
+        }
+        else if (collision.gameObject.CompareTag("register"))
+        {
+            rsencer = false;
+        }
+        else if (collision.gameObject.CompareTag("stocking"))
+        {
+            ssencer = false;
         }
     }
 
@@ -139,19 +159,33 @@ public class Player : MonoBehaviour
             pl = true;
         }
     }
-    private void Arrival()
+   
+    private void Register()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return)&&rsencer==true)
         {
-            StockingTask.StartTask();
+            registerTask.StartTask();
+            pl = false;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space)&&rsencer==true)
+        {
+            pl= true;
         }
     }
 
-    private void Register()
+    private void Stocking()
     {
-        if(Input.GetKeyDown (KeyCode.Return))
+        //タスク開始
+        if (Input.GetKeyDown(KeyCode.Return)&&ssencer==true)
         {
-            RegisterTask.StartTask();
+            stockingTask.StartTask();
+            pl = false;
+        }
+
+        if(Input.GetKeyDown(KeyCode.LeftShift)==true)
+        {
+            pl= false;
         }
     }
 
