@@ -56,7 +56,7 @@ public class TaskManager : MonoBehaviour
 
     void Start()
     {
-        Init();
+
     }
 
     public void Init()
@@ -122,5 +122,10 @@ public class TaskManager : MonoBehaviour
         Destroy(sensorText[taskGO]);
         sensorText.Remove(taskGO);
         Destroy(taskGO);
+
+        if (sensorText.Count == 0)
+        {
+            GameManager.instance.GameClear();
+        }
     }
 }

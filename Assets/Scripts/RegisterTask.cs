@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System.Linq;
 using UnityEngine.Analytics;
+using NUnit.Framework;
 
 public class RegisterTask : MonoBehaviour
 {
@@ -68,6 +69,8 @@ public class RegisterTask : MonoBehaviour
 
     private List<SwitchSprite> arrowSprites = new List<SwitchSprite>();
 
+    private List<GameObject> instantObject = new List<GameObject>();
+
     private Text remainText;
 
     private int arrowRemain;
@@ -113,6 +116,7 @@ public class RegisterTask : MonoBehaviour
                 {
                     //タスク完了
                     Debug.Log("タスク完了");
+                    StopTask();
                 }
 
                 //表示更新
@@ -175,10 +179,21 @@ public class RegisterTask : MonoBehaviour
             remainText = GameObject.Find("ArrowRemainText").GetComponent<Text>();
             remainObject.transform.SetParent(canvas.transform);
             remainObject.transform.position = remainTransform.position;
+            instantObject.Add(remainObject);
         }
 
         //表示更新
         View();
+    }
+
+    void StopTask()
+    {
+
+        foreach (GameObject o in instantObject.ToList())
+        {
+            Destroy(o);
+        }
+        instantObject.Clear();
     }
 
     void CreateArrowObject()
@@ -196,6 +211,7 @@ public class RegisterTask : MonoBehaviour
                 arrow.transform.SetParent(canvas.transform);
                 arrow.transform.position = pos;
                 arrow.transform.localScale *= size[i];
+                instantObject.Add(arrow);
             }
         }
     }
@@ -226,12 +242,14 @@ public class RegisterTask : MonoBehaviour
         clarkTalkGO.transform.SetParent(canvas.transform);
         clarkTalkText.text = clerkTalks[Random.Range(0, clerkTalks.Count - 1)];
         talkList.Add(clarkTalkGO);
+        instantObject.Add(clarkTalkGO);
 
         GameObject customerTalkGO = Instantiate(talkPrefab, customerTransform.position, Quaternion.identity);
         Text customerTalkText = customerTalkGO.GetComponentInChildren<Text>();
         customerTalkGO.transform.SetParent(canvas.transform);
         customerTalkText.text = customerTalks[Random.Range(0, customerTalks.Count - 1)];
         talkList.Add(customerTalkGO);
+        instantObject.Add(customerTalkGO);
     }
 
     void SetPatternArrow()
@@ -289,6 +307,7 @@ public class RegisterTask : MonoBehaviour
     void InterruptTask()
     {
         Debug.Log("ゲームを中断しました");
+        StopTask();
         isPlaying = false;
     }
 }
