@@ -152,6 +152,16 @@ public class RegisterTask : MonoBehaviour
         isPlaying = true;
         counter = 0;
 
+        //吹き出しオブジェクトがあるなら削除
+        if (talkList.Count != 0)
+        {
+            foreach (GameObject go in talkList)
+            {
+                Destroy(go);
+            }
+            talkList.Clear();
+        }
+
         //矢印パターンからKeyCodeを生成
         SetPatternArrow();
 
@@ -159,10 +169,13 @@ public class RegisterTask : MonoBehaviour
         CreateArrowObject();
 
         //矢印残り数表示オブジェクト生成
-        GameObject remainObject = Instantiate(arrowRemainObject, remainTransform.position, Quaternion.identity);
-        remainText = GameObject.Find("ArrowRemainText").GetComponent<Text>();
-        remainObject.transform.SetParent(canvas.transform);
-        remainObject.transform.position = remainTransform.position;
+        if (GameObject.Find("ArrowRemain(Clone)") == null)
+        {
+            GameObject remainObject = Instantiate(arrowRemainObject, remainTransform.position, Quaternion.identity);
+            remainText = GameObject.Find("ArrowRemainText").GetComponent<Text>();
+            remainObject.transform.SetParent(canvas.transform);
+            remainObject.transform.position = remainTransform.position;
+        }
 
         //表示更新
         View();
@@ -223,8 +236,9 @@ public class RegisterTask : MonoBehaviour
 
     void SetPatternArrow()
     {
+        arrowsList.Clear();
         Random.InitState(System.DateTime.Now.Millisecond);
-        List<Arrow> arrows = arrowLists[Random.Range(0, arrowLists.Count - 1)].arrowList;
+        List<Arrow> arrows = arrowLists[Random.Range(0, arrowLists.Count)].arrowList;
         
         foreach (Arrow arrow in arrows)
         {
