@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
         //ƒQ[ƒ€I—¹
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("escape");
+            SceneManager.LoadScene("TitleScene");
         }
         
     }
