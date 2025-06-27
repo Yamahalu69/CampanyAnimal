@@ -126,7 +126,8 @@ public class Player : MonoBehaviour
 
     private void CleanTask()
     {
-         
+        if (!csencer) return;
+
         //タスク開始
         if (Input.GetKeyDown(KeyCode.Return) && csencer == true) 
         {
@@ -140,24 +141,40 @@ public class Player : MonoBehaviour
             pl = true;
         }
         //タスク完了
-        if(cleantask == null)
+        if (!cleantask.activeSelf)
         {
             pl = true;
         }
     }
     private void DisplayTask()
     {
+        if (!dsencer) return;
+
         //タスク開始
         if (Input.GetKeyDown(KeyCode.Return) && dsencer == true)
         {
+<<<<<<< HEAD
             Debug.Log("bbb");
             displaytask.SetActive(true);
+=======
+>>>>>>> 5d4ed6a6199e1d3bb3380aa60ffeeb38978cc7b9
             pl = false;
+            displaytask.SetActive(true); 
         }
+<<<<<<< HEAD
         //タスク終了
         else if (Input.GetKeyDown(KeyCode.Space) && dsencer == true) 
+=======
+        //タスク中断
+        if (Input.GetKeyDown(KeyCode.Space) && dsencer == true) 
+>>>>>>> 5d4ed6a6199e1d3bb3380aa60ffeeb38978cc7b9
         {
             displaytask.SetActive(false);
+            pl = true;
+        }
+        //タスク完了
+        if (!displaytask.activeSelf)
+        {
             pl = true;
         }
     }
