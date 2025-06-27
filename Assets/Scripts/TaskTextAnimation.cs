@@ -18,6 +18,7 @@ public class TaskTextAnimation : MonoBehaviour
     public void EraseTextAnim()
     {
         textC = GetComponent<Text>();
+        StartCoroutine(Anim());
     }
 
     IEnumerator Anim()
