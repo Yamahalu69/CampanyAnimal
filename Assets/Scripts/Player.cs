@@ -1,3 +1,5 @@
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,14 +9,21 @@ public class Player : MonoBehaviour
     private bool pl = true;//プレイヤーがタスクを行っているか
     [SerializeField] private GameObject cleantask;//清掃タスク
     private bool csencer;//清掃タスクの表示と非表示に使用
-    [SerializeField] private GameObject atask;//テストタスク
-    private bool tsencer;//テストタスクの表示と非表示に使用
+    [SerializeField] private GameObject displaytask;//前陳タスク
+    private bool dsencer;//前陳タスクの表示と非表示に使用
+    [SerializeField] RegisterTask registerTask;//レジ打ちタスク
+    private bool rsencer;//レジ打ちタスクの表示と非表示
+    [SerializeField] StockingTask stockingTask;//入荷タスク
+    private bool ssencer;//入荷タスクの表示と非表示
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        pl= true;
         cleantask.SetActive(false);
-        atask.SetActive(false);
+        displaytask.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -22,11 +31,14 @@ public class Player : MonoBehaviour
     {
        
         Playermove();//プレイヤーの移動操作
-
+        
         CleanTask();//掃除タスク開始と終了
 
-        ATask();//ATask開始と終了
-        
+        DisplayTask();//陳列タスク開始と終了
+
+        Register();//レジ打ちタスク
+
+        Stocking();//入荷タスク
         
         //ゲーム終了
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -38,51 +50,77 @@ public class Player : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("clean"))
+        if (collision.gameObject.CompareTag("cleaning"))
         {
             csencer = true;
-        }
-        else if(collision.gameObject.CompareTag("task"))
+        }     
+        else if (collision.gameObject.CompareTag("display"))
         {
-            tsencer = true;
+            dsencer = true;
         }
-        
+        else if(collision.gameObject.CompareTag("register"))
+        {
+            rsencer = true;
+        }
+        else if(collision.gameObject.CompareTag("stocking"))
+        {
+            ssencer = true;
+        }
+
+
     }
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("clean"))
+        if (collision.gameObject.CompareTag("cleaning"))
         {
-            csencer = false; 
+            csencer = false;
         }
-        else if (collision.gameObject.CompareTag("task"))
+        else if (collision.gameObject.CompareTag("display"))
         {
-            tsencer = false;
+            dsencer = false;
+        }
+        else if (collision.gameObject.CompareTag("register"))
+        {
+            rsencer = false;
+        }
+        else if (collision.gameObject.CompareTag("stocking"))
+        {
+            ssencer = false;
         }
     }
 
     private void Playermove()
     {
-        float movex = 0;
-        float movez = 0;
-        //四方向移動
-        if (Input.GetKey(KeyCode.W))
+        Vector3 vector =new Vector3(0,0,0);
+        if(pl==true)
         {
-            movez = sp;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            movez = -sp;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            movex = sp;
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            movex = -sp;
+            //四方向移動
+            if (Input.GetKey(KeyCode.W))
+            {
+                vector.z = 1.0f;
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                vector.z = -1.0f;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                vector.x = 1.0f;
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                vector.x = -1.0f;
+            }
         }
 
-        transform.Translate(new Vector3(movex, 0, movez));
+        float length = Mathf.Sqrt((vector.x * vector.x) + (vector.z * vector.z));
+
+        if ((0 < length))
+        {
+            vector = vector / length;
+            vector *= sp;
+            transform.position += vector;
+        }
     }
 
     private void CleanTask()
@@ -92,24 +130,62 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return) && csencer == true) 
         {
             cleantask.SetActive(true);
+            pl = false;
         }
         //タスク中断
         if (Input.GetKeyDown(KeyCode.Space) && csencer == true)
         {
             cleantask.SetActive(false);
+            pl = true;
+        }
+        //タスク完了
+        if(cleantask == null)
+        {
+            pl = true;
         }
     }
-    private void ATask()
+    private void DisplayTask()
     {
         //タスク開始
-        if (Input.GetKeyDown(KeyCode.Return) && tsencer == true)
+        if (Input.GetKeyDown(KeyCode.Return) && dsencer == true)
         {
-            atask.SetActive(true);
+            displaytask.SetActive(true);
+            pl= false;
         }
         //タスク終了
-        if (Input.GetKeyDown(KeyCode.Space) && tsencer == true) 
+        if (Input.GetKeyDown(KeyCode.Space) && dsencer == true) 
         {
-            atask.SetActive(false);
+            displaytask.SetActive(false);
+            pl = true;
+        }
+    }
+   
+    private void Register()
+    {
+        if (Input.GetKeyDown(KeyCode.Return)&&rsencer==true)
+        {
+            registerTask.StartTask();
+            pl = false;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space)&&rsencer==true)
+        {
+            pl= true;
+        }
+    }
+
+    private void Stocking()
+    {
+        //タスク開始
+        if (Input.GetKeyDown(KeyCode.Return)&&ssencer==true)
+        {
+            stockingTask.StartTask();
+            pl = false;
+        }
+
+        if(Input.GetKeyDown(KeyCode.LeftShift)==true)
+        {
+            pl= true;
         }
     }
 
