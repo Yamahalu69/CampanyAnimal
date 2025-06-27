@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter　(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("cleaning"))
         {
@@ -153,21 +153,21 @@ public class Player : MonoBehaviour
         //タスク開始
         if (Input.GetKeyDown(KeyCode.Return) && dsencer == true)
         {
-<<<<<<< HEAD
+            // HEAD
             Debug.Log("bbb");
             displaytask.SetActive(true);
-=======
->>>>>>> 5d4ed6a6199e1d3bb3380aa60ffeeb38978cc7b9
+            //
+            // 5d4ed6a6199e1d3bb3380aa60ffeeb38978cc7b9
             pl = false;
             displaytask.SetActive(true); 
         }
-<<<<<<< HEAD
+        // HEAD
         //タスク終了
-        else if (Input.GetKeyDown(KeyCode.Space) && dsencer == true) 
-=======
-        //タスク中断
-        if (Input.GetKeyDown(KeyCode.Space) && dsencer == true) 
->>>>>>> 5d4ed6a6199e1d3bb3380aa60ffeeb38978cc7b9
+        else if (Input.GetKeyDown(KeyCode.Space) && dsencer == true)
+            //
+            //タスク中断
+            if (Input.GetKeyDown(KeyCode.Space) && dsencer == true) 
+// 5d4ed6a6199e1d3bb3380aa60ffeeb38978cc7b9
         {
             displaytask.SetActive(false);
             pl = true;
