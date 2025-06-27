@@ -368,5 +368,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e13fa844b96bc554c97fbdfe49bad396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
-  textC: {fileID: 0}
+  slider: {fileID: 5436683631471109905}
+  fill: {fileID: 2272767836015799978}
+  textC: {fileID: 8138106571830418970}
+  lineAnimTime: 0.5
+  fadeAnimTime: 0.5
