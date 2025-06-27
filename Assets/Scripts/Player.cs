@@ -48,43 +48,43 @@ public class Player : MonoBehaviour
         
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerEnterÅ@(Collider other)
     {
-        if (collision.gameObject.CompareTag("cleaning"))
+        if (other.gameObject.CompareTag("cleaning"))
         {
             csencer = true;
         }     
-        else if (collision.gameObject.CompareTag("display"))
+        else if (other.gameObject.CompareTag("display"))
         {
             Debug.Log("aaa");
             dsencer = true;
         }
-        else if(collision.gameObject.CompareTag("register"))
+        else if(other.gameObject.CompareTag("register"))
         {
             rsencer = true;
         }
-        else if(collision.gameObject.CompareTag("stocking"))
+        else if(other.gameObject.CompareTag("stocking"))
         {
             ssencer = true;
         }
 
 
     }
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.CompareTag("cleaning"))
+        if (other.gameObject.CompareTag("cleaning"))
         {
             csencer = false;
         }
-        else if (collision.gameObject.CompareTag("display"))
+        else if (other.gameObject.CompareTag("display"))
         {
             dsencer = false;
         }
-        else if (collision.gameObject.CompareTag("register"))
+        else if (other.gameObject.CompareTag("register"))
         {
             rsencer = false;
         }
-        else if (collision.gameObject.CompareTag("stocking"))
+        else if (other.gameObject.CompareTag("stocking"))
         {
             ssencer = false;
         }
