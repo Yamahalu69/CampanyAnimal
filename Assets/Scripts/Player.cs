@@ -8,13 +8,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float sp;//プレイヤーのスピード
     private bool pl = true;//プレイヤーがタスクを行っているか
     [SerializeField] private GameObject cleantask;//清掃タスク
-    private bool csencer;//清掃タスクの表示と非表示に使用
+    private bool csencer = false;//清掃タスクの表示と非表示に使用
     [SerializeField] private GameObject displaytask;//前陳タスク
-    private bool dsencer;//前陳タスクの表示と非表示に使用
+    private bool dsencer = false;//前陳タスクの表示と非表示に使用
     [SerializeField] RegisterTask registerTask;//レジ打ちタスク
-    private bool rsencer;//レジ打ちタスクの表示と非表示
+    private bool rsencer = false;//レジ打ちタスクの表示と非表示
     [SerializeField] StockingTask stockingTask;//入荷タスク
-    private bool ssencer;//入荷タスクの表示と非表示
+    private bool ssencer = false;//入荷タスクの表示と非表示
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
         }     
         else if (collision.gameObject.CompareTag("display"))
         {
+            Debug.Log("aaa");
             dsencer = true;
         }
         else if(collision.gameObject.CompareTag("register"))
@@ -149,8 +150,9 @@ public class Player : MonoBehaviour
         //タスク開始
         if (Input.GetKeyDown(KeyCode.Return) && dsencer == true)
         {
+            Debug.Log("aaa");
             displaytask.SetActive(true);
-            pl= false;
+            pl = false;
         }
         //タスク終了
         if (Input.GetKeyDown(KeyCode.Space) && dsencer == true) 

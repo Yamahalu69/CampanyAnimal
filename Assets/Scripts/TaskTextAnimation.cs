@@ -11,7 +11,7 @@ public class TaskTextAnimation : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            EraseTextAnim();
+            //EraseTextAnim();
         }
     }
 
