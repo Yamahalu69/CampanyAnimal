@@ -750,7 +750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1107778507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,14 +827,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stockColor: {r: 1, g: 0, b: 0, a: 1}
-  stockMaterial: {fileID: 0}
   displayColor: {r: 1, g: 1, b: 0, a: 1}
-  displayMaterial: {fileID: 0}
   cleanColor: {r: 0, g: 1, b: 1, a: 1}
-  cleanMaterial: {fileID: 0}
   registerColor: {r: 1, g: 0, b: 1, a: 1}
-  registerMaterial: {fileID: 0}
-  taskGuidePrefab: {fileID: 292778898724061133, guid: 1c90691f0cc6789438c26185ca84b4d1, type: 3}
+  stockTaskGuidePrefab: {fileID: 0}
+  displayTaskGuidePrefab: {fileID: 0}
+  cleanTaskGuidePrefab: {fileID: 0}
+  registerTaskGuidePrefab: {fileID: 0}
   remainTaskText: {fileID: 8781663980361377302, guid: 35a5e4b3e013108439c6bde6d7212355, type: 3}
   displayTaskCount: 5
   remainTaskTextPT: {fileID: 2104029043}

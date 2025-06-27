@@ -99,6 +99,7 @@ public class TaskManager : MonoBehaviour
         Vector3 pos = dispGuidePos[Random.Range(0, dispGuidePos.Count)].position;
         GameObject taskGO = Instantiate(displayTaskGuidePrefab, pos, Quaternion.identity);
         GameObject rtText = Instantiate(remainTaskText, Vector3.zero, Quaternion.identity);
+        rtText.transform.SetParent(remainTaskTextPT);
         taskGO.tag = "display";
         rtText.GetComponent<Text>().color = displayColor;
         rtText.GetComponent<Text>().text = "ëOí¬";
@@ -110,6 +111,7 @@ public class TaskManager : MonoBehaviour
         Vector3 pos = registerGuidePos.position;
         GameObject taskGO = Instantiate(registerTaskGuidePrefab, pos, Quaternion.identity);
         GameObject rtText = Instantiate(remainTaskText, Vector3.zero, Quaternion.identity);
+        rtText.transform.SetParent(remainTaskTextPT);
         taskGO.tag = "register";
         rtText.GetComponent<Text>().color = registerColor;
         rtText.GetComponent<Text>().text = "ÉåÉWë≈Çø";
@@ -121,6 +123,7 @@ public class TaskManager : MonoBehaviour
         Vector3 pos = stockGuidePos[Random.Range(0, stockGuidePos.Count)].position;
         GameObject taskGO = Instantiate(stockTaskGuidePrefab, pos, Quaternion.identity);
         GameObject rtText = Instantiate(remainTaskText, Vector3.zero, Quaternion.identity);
+        rtText.transform.SetParent(remainTaskTextPT);
         taskGO.tag = "stocking";
         rtText.GetComponent<Text>().color = stockColor;
         rtText.GetComponent<Text>().text = "ì¸â◊";
@@ -132,6 +135,7 @@ public class TaskManager : MonoBehaviour
         Vector3 pos = cleanGuidePos[Random.Range(0, cleanGuidePos.Count)].position;
         GameObject taskGO = Instantiate(cleanTaskGuidePrefab, pos, Quaternion.identity);
         GameObject rtText = Instantiate(remainTaskText, Vector3.zero, Quaternion.identity);
+        rtText.transform.SetParent(remainTaskTextPT);
         taskGO.tag = "cleaning";
         rtText.GetComponent<Text>().color = cleanColor;
         rtText.GetComponent<Text>().text = "ê¥ë|";
