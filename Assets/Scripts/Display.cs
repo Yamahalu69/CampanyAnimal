@@ -1,103 +1,68 @@
-using System.Threading;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Display : MonoBehaviour
+public class PressToRiseAndFallBar : MonoBehaviour
 {
-    [SerializeField] Image bar;//移動するバー
-    [SerializeField] Image goal;//止める位置
-    [SerializeField] private float movedistance = 200f;//高さ
-    [SerializeField, Header("バーの上昇スピード")] private float movesp = 2f;//上昇スピード
-    [SerializeField, Header("バーの下降スピード")] private float downsp = 2f;//加工スピード
+    [Header("バーと非表示対象")]
+    [SerializeField] private Image bar;               // UIバー
+    [SerializeField] private GameObject targetToHide; // 非表示にする対象オブジェクト
 
-    private Vector2 farstpos;
-    private float curr = 0f;
-    private bool enterlock = false;//下降中かどうか
-    private bool islock = false;//入力がロックされているか
-    private bool clear = false;//ゴールにバーがあるかどうか
+    [Header("動作設定")]
+    [SerializeField] private float maxHeight = 200f;      // 上昇限界（px）
+    [SerializeField] private float riseSpeed = 100f;      // 上昇速度（px/sec）
+    [SerializeField] private float fallSpeed = 150f;      // 下降速度（px/sec）
+    [SerializeField] private float triggerHeight = 150f;  // 非表示判定の高さ
 
-    private void Start()
+    private Vector2 initialPos;
+    private float currentHeight = 0f;
+    private bool isFalling = false;
+    private bool hasHidden = false;
+
+    void Start()
     {
         if (bar != null)
         {
-            farstpos = bar.rectTransform.anchoredPosition;
-            bar.rectTransform.anchoredPosition = farstpos;
+            initialPos = bar.rectTransform.anchoredPosition;
         }
     }
 
-    private bool Ingoal()
+    void Update()
     {
-        RectTransform goalrt = goal.rectTransform;
-        RectTransform barrt = bar.rectTransform;
+        if (bar == null || targetToHide == null || hasHidden) return;
 
-        float bary = barrt.anchoredPosition.y;
-        float goaly = goalrt.anchoredPosition.y;
-        float goalheight = goalrt.rect.height;
-
-        float goaltop = goaly + goalheight / 2f;
-        float goalbottom = goaly - goalheight / 2f;
-
-        return bary >= goalbottom && bary <= goaltop;
-    }
-
-    private void Update()
-    {
-        if (clear) return;
-
-        if(!enterlock &&islock&&Ingoal())
+        // エンター長押しで上昇（下降中は無視）
+        if (Input.GetKey(KeyCode.Return) && !isFalling)
         {
-            clear = true;
-            this.gameObject.SetActive(false);
+            currentHeight += riseSpeed * Time.deltaTime;
+            currentHeight = Mathf.Clamp(currentHeight, 0f, maxHeight);
         }
-        //バー上昇
-        if (!islock && !enterlock && Input.GetKey(KeyCode.Return))
-        {
-            curr += movesp * Time.deltaTime;
 
-            if (curr >= movedistance)
+        // エンターキー離したら判定（下降フラグ設定）
+        if (Input.GetKeyUp(KeyCode.Return))
+        {
+            if (currentHeight >= triggerHeight)
             {
-                curr = movedistance;
-                enterlock = true;
-                islock = true;
+                targetToHide.SetActive(false);
+                hasHidden = true;
+            }
+            else
+            {
+                isFalling = true;
             }
         }
 
-        //Enterキーを離すと下降開始
-        if (!islock && !Input.GetKey(KeyCode.Return) && curr > 0f)
+        // バー下降中
+        if (isFalling)
         {
-            enterlock = true;
-            islock = true;
-        }
-
-        //バーが下降中
-        if (enterlock)
-        {
-            curr -= downsp * Time.deltaTime;
-            if (curr <= 0f)
+            currentHeight -= fallSpeed * Time.deltaTime;
+            if (currentHeight <= 0f)
             {
-                curr = 0f;
-                enterlock = false;
-                islock = false;
+                currentHeight = 0f;
+                isFalling = false; // 降りきったら停止
             }
         }
 
-        //バーの位置を更新
-        if (bar != null)
-        {
-            bar.rectTransform.anchoredPosition = new Vector2(farstpos.x, farstpos.y + curr);
-        }
-
-        //バーがゴールに到達しているかどうか
-        if (Ingoal() && !enterlock && Input.GetKeyUp(KeyCode.Return))
-        {
-            clear = true;
-            this.gameObject.SetActive(false);
-        }
+        // バー位置更新
+        bar.rectTransform.anchoredPosition = new Vector2(initialPos.x, initialPos.y + currentHeight);
     }
-
-
-
 }
