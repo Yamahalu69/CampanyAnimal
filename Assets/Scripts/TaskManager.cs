@@ -144,7 +144,7 @@ public class TaskManager : MonoBehaviour
 
     public void DeleteSensor(GameObject taskGO)
     {
-        Destroy(sensorText[taskGO]);
+        StartCoroutine(sensorText[taskGO].GetComponent<TaskTextAnimation>().EraseTextAnim());
         sensorText.Remove(taskGO);
         Destroy(taskGO);
 
