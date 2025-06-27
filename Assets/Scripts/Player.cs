@@ -150,12 +150,12 @@ public class Player : MonoBehaviour
         //タスク開始
         if (Input.GetKeyDown(KeyCode.Return) && dsencer == true)
         {
-            Debug.Log("aaa");
+            Debug.Log("bbb");
             displaytask.SetActive(true);
             pl = false;
         }
         //タスク終了
-        if (Input.GetKeyDown(KeyCode.Space) && dsencer == true) 
+        else if (Input.GetKeyDown(KeyCode.Space) && dsencer == true) 
         {
             displaytask.SetActive(false);
             pl = true;
