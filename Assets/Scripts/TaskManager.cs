@@ -93,24 +93,28 @@ public class TaskManager : MonoBehaviour
                 taskGO.GetComponent<MeshRenderer>().material = displayMaterial;
                 pos = dispGuidePos[Random.Range(0, dispGuidePos.Count)].position;
                 rtText.GetComponent<Text>().color = displayColor;
+                rtText.GetComponent<Text>().text = "ëOí¬";
                 break;
             case Task.register:
                 taskGO.tag = "register";
                 taskGO.GetComponent<MeshRenderer>().material = registerMaterial;
                 pos = registerGuidePos.position;
                 rtText.GetComponent<Text>().color = registerColor;
+                rtText.GetComponent<Text>().text = "ÉåÉWë≈Çø";
                 break;
             case Task.stocking:
                 taskGO.tag = "stocking";
                 taskGO.GetComponent<MeshRenderer>().material = stockMaterial;
                 pos = stockGuidePos[Random.Range(0, stockGuidePos.Count)].position;
                 rtText.GetComponent<Text>().color = stockColor;
+                rtText.GetComponent<Text>().text = "ì¸â◊";
                 break;
             case Task.cleaning:
                 taskGO.tag = "cleaning";
                 taskGO.GetComponent<MeshRenderer>().material = cleanMaterial;
                 pos = cleanGuidePos[Random.Range(0, cleanGuidePos.Count)].position;
                 rtText.GetComponent<Text>().color = cleanColor;
+                rtText.GetComponent<Text>().text = "ê¥ë|";
                 break;
         }
 
