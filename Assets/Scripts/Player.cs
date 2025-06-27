@@ -153,31 +153,12 @@ public class Player : MonoBehaviour
         //タスク開始
         if (Input.GetKeyDown(KeyCode.Return) && dsencer == true)
         {
-<<<<<<< HEAD
-            // HEAD
-            Debug.Log("bbb");
             displaytask.SetActive(true);
-            //
-            // 5d4ed6a6199e1d3bb3380aa60ffeeb38978cc7b9
-=======
-            displaytask.SetActive(true);
->>>>>>> eaebc3db9ac32f790037541c7197dca0ba12b4a7
             pl = false;
         }
-<<<<<<< HEAD
-        // HEAD
-        //タスク終了
-        else if (Input.GetKeyDown(KeyCode.Space) && dsencer == true)
-            //
-            //タスク中断
-            if (Input.GetKeyDown(KeyCode.Space) && dsencer == true) 
-// 5d4ed6a6199e1d3bb3380aa60ffeeb38978cc7b9
-=======
 
         //タスク中断
         if (Input.GetKeyDown(KeyCode.Space) && dsencer == true) 
-
->>>>>>> eaebc3db9ac32f790037541c7197dca0ba12b4a7
         {
             displaytask.SetActive(false);
             pl = true;
