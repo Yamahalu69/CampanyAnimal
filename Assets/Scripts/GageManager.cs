@@ -5,28 +5,24 @@ using UnityEngine.UI;
 
 public class GageManager : MonoBehaviour
 {
-    public Slider slider;
-    public float startValue = 0.4f;   // 初期値40%
-    public float endValue = 1.0f;     // 最終値100%
-    public float duration = 60f;      // 60秒で満タンに
+    public Slider slider;　//スライダーの参照
+    public float duration = 60f; //ゴールまでの時間(秒)
 
-    private float elapsedTime = 0f;
+    private float timeEleapsed = 0f; //経過時間
 
     void Start()
-    {
-        slider.minValue = 0f;
-        slider.maxValue = 1f;
-        slider.value = startValue;   // ここで初期値セット
+    { 
+
     }
 
     void Update()
     {
-        if (elapsedTime < duration)
+        //時間経過するごとにスライダーの値を更新
+        if (timeEleapsed < duration)
         {
-            elapsedTime += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsedTime / duration);
-
-            slider.value = Mathf.Lerp(startValue, endValue, t);
+            timeEleapsed += Time.deltaTime; //経過時間を更新
+            slider.value = Mathf.Lerp
+                (0f,1f,timeEleapsed / duration); //スライダーの値を更新(0～1に補間)
         }
     }
 }
