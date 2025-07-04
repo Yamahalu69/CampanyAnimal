@@ -119,7 +119,7 @@ public class RegisterTask : MonoBehaviour
                     //タスク完了
                     Debug.Log("タスク完了");
                     StopTask();
-                    player.taskfinish = true;
+                    player.CompleateTask();
                 }
 
                 //表示更新
