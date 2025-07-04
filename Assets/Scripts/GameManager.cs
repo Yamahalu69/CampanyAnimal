@@ -23,6 +23,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GameStart();
+        SceneManager.sceneLoaded += SceneLoaded;
+    }
+
+    void SceneLoaded(Scene nextScene, LoadSceneMode mode)
+    {
+        GameStart();
     }
 
     void GameStart()
