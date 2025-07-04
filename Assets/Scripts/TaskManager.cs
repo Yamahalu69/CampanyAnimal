@@ -51,8 +51,11 @@ public class TaskManager : MonoBehaviour
     [Header("レジ打ちタスク案内の座標")]
     public Transform registerGuidePos;
 
+    private int dispTaskIndex = 0;
+    private int stockTaskIndex = 0;
+    private int cleanTaskIndex = 0;
+
     private Dictionary<GameObject, GameObject> sensorText = new Dictionary<GameObject, GameObject>();
-    private List<GameObject> taskGOs = new List<GameObject>();
 
     void Start()
     {
@@ -98,7 +101,7 @@ public class TaskManager : MonoBehaviour
 
     void CreateDispTaskGO()
     {
-        Vector3 pos = dispGuidePos[Random.Range(0, dispGuidePos.Count)].position;
+        Vector3 pos = TaskPos(Task.display);
         GameObject taskGO = Instantiate(displayTaskGuidePrefab, pos, Quaternion.identity);
         GameObject rtText = Instantiate(remainTaskText, Vector3.zero, Quaternion.identity);
         rtText.transform.SetParent(remainTaskTextPT);
@@ -110,7 +113,7 @@ public class TaskManager : MonoBehaviour
 
     void CreateRegiTaskGO()
     {
-        Vector3 pos = registerGuidePos.position;
+        Vector3 pos = TaskPos(Task.register);
         GameObject taskGO = Instantiate(registerTaskGuidePrefab, pos, Quaternion.identity);
         GameObject rtText = Instantiate(remainTaskText, Vector3.zero, Quaternion.identity);
         rtText.transform.SetParent(remainTaskTextPT);
@@ -122,7 +125,7 @@ public class TaskManager : MonoBehaviour
 
     void CreateStockTaskGO()
     {
-        Vector3 pos = stockGuidePos[Random.Range(0, stockGuidePos.Count)].position;
+        Vector3 pos = TaskPos(Task.stocking);
         GameObject taskGO = Instantiate(stockTaskGuidePrefab, pos, Quaternion.identity);
         GameObject rtText = Instantiate(remainTaskText, Vector3.zero, Quaternion.identity);
         rtText.transform.SetParent(remainTaskTextPT);
@@ -134,7 +137,7 @@ public class TaskManager : MonoBehaviour
 
     void CreateCleanTaskGO()
     {
-        Vector3 pos = cleanGuidePos[Random.Range(0, cleanGuidePos.Count)].position;
+        Vector3 pos = TaskPos(Task.cleaning);
         GameObject taskGO = Instantiate(cleanTaskGuidePrefab, pos, Quaternion.identity);
         GameObject rtText = Instantiate(remainTaskText, Vector3.zero, Quaternion.identity);
         rtText.transform.SetParent(remainTaskTextPT);
@@ -153,6 +156,34 @@ public class TaskManager : MonoBehaviour
         if (sensorText.Count == 0)
         {
             CompletedTask();
+        }
+    }
+
+    Vector3 TaskPos(Task task)
+    {
+        Vector3 pos = Vector3.zero;
+        switch (task)
+        {
+            case Task.display:
+                pos = dispGuidePos[dispTaskIndex].position;
+                dispTaskIndex = (dispTaskIndex + 1) % dispGuidePos.Count;
+                return pos;
+
+            case Task.register:
+                pos = registerGuidePos.position;
+                return pos;
+
+            case Task.stocking:
+                pos = stockGuidePos[stockTaskIndex].position;
+                stockTaskIndex = (stockTaskIndex + 1) % stockGuidePos.Count;
+                return pos;
+
+            case Task.cleaning:
+                pos = cleanGuidePos[cleanTaskIndex].position;
+                cleanTaskIndex = (cleanTaskIndex + 1) % cleanGuidePos.Count;
+                return pos;
+            default:
+                return pos;
         }
     }
 }
