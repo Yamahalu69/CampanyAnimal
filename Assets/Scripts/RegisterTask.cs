@@ -120,6 +120,7 @@ public class RegisterTask : MonoBehaviour
                     Debug.Log("ƒ^ƒXƒNŠ®—¹");
                     StopTask();
                     player.rsencer = false;
+                    player.pl = true;
                     player.CompleateTask();
                 }
 

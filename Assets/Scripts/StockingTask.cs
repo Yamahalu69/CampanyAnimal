@@ -74,6 +74,7 @@ public class StockingTask : MonoBehaviour
                     StopTask();
                     isPlaying = false;
                     player.ssencer = false;
+                    player.pl = true;
                     player.CompleateTask();
                 }
                 RandomMoveTarget();
