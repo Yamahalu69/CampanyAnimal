@@ -60,6 +60,8 @@ public class Clean : MonoBehaviour
                     cleantask.SetActive(false);
                     hascompleted = true;
                     prayer.CompleateTask();
+                    prayer.csencer = false;
+                    prayer.pl = true;
                 }
             }
         }
