@@ -23,6 +23,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GameStart();
+        SceneManager.activeSceneChanged += ActiveSceneChanged;
+    }
+
+    void ActiveSceneChanged(Scene thisScene, Scene nextScene)
+    {
+        taskManager = GameObject.Find("Manager").GetComponent<TaskManager>();
+        GameStart();
     }
 
     void GameStart()

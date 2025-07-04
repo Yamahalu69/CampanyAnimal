@@ -688,6 +688,7 @@ MonoBehaviour:
   - 0.8
   - 0.6
   - 0.5
+  player: {fileID: 0}
 --- !u!4 &1107778508
 Transform:
   m_ObjectHideFlags: 0
