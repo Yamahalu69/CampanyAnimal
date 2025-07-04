@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float sp;//プレイヤーのスピード
     private bool pl = true;//プレイヤーがタスクを行っているか
+    public bool taskfinish = true;//タスクが完了しているかどうか
     [SerializeField] private GameObject cleantask;//清掃タスク
     private bool csencer = false;//清掃タスクの表示と非表示に使用
     [SerializeField] private GameObject displaytask;//前陳タスク
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     private bool rsencer = false;//レジ打ちタスクの表示と非表示
     [SerializeField] StockingTask stockingTask;//入荷タスク
     private bool ssencer = false;//入荷タスクの表示と非表示
+    [SerializeField]TaskManager taskManager;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -88,6 +90,13 @@ public class Player : MonoBehaviour
         {
             ssencer = false;
         }
+
+        if(taskfinish)
+        {
+            taskManager.DeleteSensor(other.gameObject);
+            taskfinish = false;
+        }
+            
     }
 
     private void Playermove()
