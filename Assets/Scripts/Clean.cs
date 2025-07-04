@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Clean : MonoBehaviour
 {
+    [SerializeField] private Player prayer;
+
     [SerializeField] private Slider bar;
     [SerializeField] private GameObject cleantask;
     [SerializeField, Header("Å‘å“ü—Í‰ñ”")] private int maxcount;
@@ -57,6 +59,7 @@ public class Clean : MonoBehaviour
                 {
                     cleantask.SetActive(false);
                     hascompleted = true;
+                    prayer.CompleateTask();
                 }
             }
         }

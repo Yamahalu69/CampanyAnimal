@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float sp;//プレイヤーのスピード
     private bool pl = true;//プレイヤーがタスクを行っているか
-    public bool taskfinish = true;//タスクが完了しているかどうか
     [SerializeField] private GameObject cleantask;//清掃タスク
     private bool csencer = false;//清掃タスクの表示と非表示に使用
     [SerializeField] private GameObject displaytask;//前陳タスク
@@ -17,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] StockingTask stockingTask;//入荷タスク
     private bool ssencer = false;//入荷タスクの表示と非表示
     [SerializeField]TaskManager taskManager;
+    private GameObject currentTask;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -52,13 +52,13 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        currentTask=other.gameObject;
         if (other.gameObject.CompareTag("cleaning"))
         {
             csencer = true;
         }     
         else if (other.gameObject.CompareTag("display"))
         {
-            Debug.Log("aaa");
             dsencer = true;
         }
         else if(other.gameObject.CompareTag("register"))
@@ -89,12 +89,6 @@ public class Player : MonoBehaviour
         else if (other.gameObject.CompareTag("stocking"))
         {
             ssencer = false;
-        }
-
-        if(taskfinish)
-        {
-            taskManager.DeleteSensor(other.gameObject);
-            taskfinish = false;
         }
             
     }
@@ -144,15 +138,16 @@ public class Player : MonoBehaviour
             pl = false;
         }
         //タスク中断
-        if (Input.GetKeyDown(KeyCode.Space) && csencer == true)
+        else if (Input.GetKeyDown(KeyCode.Space) && csencer == true)
         {
             cleantask.SetActive(false);
             pl = true;
         }
         //タスク完了
-        if (!cleantask.activeSelf)
+        else if (!cleantask.activeSelf)
         {
             pl = true;
+       
         }
     }
     private void DisplayTask()
@@ -167,15 +162,16 @@ public class Player : MonoBehaviour
         }
 
         //タスク中断
-        if (Input.GetKeyDown(KeyCode.Space) && dsencer == true) 
+        else if (Input.GetKeyDown(KeyCode.Space) && dsencer == true) 
         {
             displaytask.SetActive(false);
             pl = true;
         }
         //タスク完了
-        if (!displaytask.activeSelf)
+        else if (!displaytask.activeSelf)
         {
             pl = true;
+            
         }
     }
    
@@ -208,4 +204,8 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void CompleateTask()
+    {
+        taskManager.DeleteSensor(currentTask);
+    }
 }

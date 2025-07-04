@@ -73,7 +73,7 @@ public class StockingTask : MonoBehaviour
                     Debug.Log("ƒ^ƒXƒNŠ®—¹");
                     StopTask();
                     isPlaying = false;
-                    player.CompeateTask;
+                    player.CompleateTask();
                 }
                 RandomMoveTarget();
             }

@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class PressToRiseAndFallBar : MonoBehaviour
 {
+    [SerializeField] private Player prayer;
+
     [Header("バーと非表示対象")]
     [SerializeField] private Image bar;               // UIバー
     [SerializeField] private GameObject targetToHide; // 非表示にする対象オブジェクト
@@ -66,6 +68,7 @@ public class PressToRiseAndFallBar : MonoBehaviour
             {
                 targetToHide.SetActive(false);
                 hasHidden = true;
+                prayer.CompleateTask();
             }
             else
             {
