@@ -572,6 +572,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1256232448011537038, guid: 6ece8a266f5d4db4a9983b2afab0ad98, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1256232448011537038, guid: 6ece8a266f5d4db4a9983b2afab0ad98, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 1256232448011537038, guid: 6ece8a266f5d4db4a9983b2afab0ad98, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 3142870754632568779, guid: 6ece8a266f5d4db4a9983b2afab0ad98, type: 3}
       propertyPath: prayer
       value: 
@@ -1185,6 +1197,18 @@ PrefabInstance:
     - target: {fileID: 6494322935246473586, guid: 8e11c112173e5164791a487939b4843e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113447389696905436, guid: 8e11c112173e5164791a487939b4843e, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113447389696905436, guid: 8e11c112173e5164791a487939b4843e, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113447389696905436, guid: 8e11c112173e5164791a487939b4843e, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2198,7 +2222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc8134e566ce2341aaf381e1cdb77b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sp: 0.01
+  sp: 0.05
   pl: 1
   cleantask: {fileID: 2128220560}
   csencer: 0
@@ -2925,10 +2949,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public bool ssencer = false;//入荷タスクの表示と非表示
     [SerializeField]TaskManager taskManager;
     private GameObject currentTask;
+    private Vector3 vector = new Vector3(0, 0, 0);
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -48,6 +49,16 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("TitleScene");
         }
         
+    }
+    private void FixedUpdate()
+    {
+        float length = Mathf.Sqrt((vector.x * vector.x) + (vector.z * vector.z));
+        if ((0 < length))
+        {
+            vector = vector / length;
+            vector *= sp;
+            transform.position += vector;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -95,7 +106,7 @@ public class Player : MonoBehaviour
 
     private void Playermove()
     {
-        Vector3 vector =new Vector3(0,0,0);
+        vector = Vector3.zero;
         if(pl==true)
         {
             //四方向移動
@@ -117,14 +128,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        float length = Mathf.Sqrt((vector.x * vector.x) + (vector.z * vector.z));
-
-        if ((0 < length))
-        {
-            vector = vector / length;
-            vector *= sp;
-            transform.position += vector;
-        }
+        
     }
 
     private void CleanTask()
