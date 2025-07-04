@@ -24,5 +24,9 @@ public class GageManager : MonoBehaviour
             slider.value = Mathf.Lerp
                 (0f,1f,timeEleapsed / duration); //スライダーの値を更新(0～1に補間)
         }
+        else
+        {
+            GameManager.instance.OverWorkGameOver();
+        }
     }
 }

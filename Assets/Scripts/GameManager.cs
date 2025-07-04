@@ -32,13 +32,16 @@ public class GameManager : MonoBehaviour
 
     public void GameClear()
     {
-        Debug.Log("GameClear");
         SceneManager.LoadScene("GameClearScene");
     }
 
     public void GameOver()
     {
-        Debug.Log("GameOver");
         SceneManager.LoadScene("GameOverScene");
+    }
+
+    public void OverWorkGameOver()
+    {
+        SceneManager.LoadScene("GameOverSceneOverWork");
     }
 }
