@@ -75,6 +75,8 @@ public class RegisterTask : MonoBehaviour
 
     private int arrowRemain;
 
+    [SerializeField] Player player;
+
     void Start()
     {
         if (isDebug) StartTask();
@@ -117,6 +119,7 @@ public class RegisterTask : MonoBehaviour
                     //タスク完了
                     Debug.Log("タスク完了");
                     StopTask();
+                    player.taskfinish = true;
                 }
 
                 //表示更新
