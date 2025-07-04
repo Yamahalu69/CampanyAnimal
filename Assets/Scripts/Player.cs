@@ -6,15 +6,15 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float sp;//プレイヤーのスピード
-    private bool pl = true;//プレイヤーがタスクを行っているか
+    public bool pl = true;//プレイヤーがタスクを行っているか
     [SerializeField] private GameObject cleantask;//清掃タスク
-    private bool csencer = false;//清掃タスクの表示と非表示に使用
+    public bool csencer = false;//清掃タスクの表示と非表示に使用
     [SerializeField] private GameObject displaytask;//前陳タスク
-    private bool dsencer = false;//前陳タスクの表示と非表示に使用
+    public bool dsencer = false;//前陳タスクの表示と非表示に使用
     [SerializeField] RegisterTask registerTask;//レジ打ちタスク
-    private bool rsencer = false;//レジ打ちタスクの表示と非表示
+    public bool rsencer = false;//レジ打ちタスクの表示と非表示
     [SerializeField] StockingTask stockingTask;//入荷タスク
-    private bool ssencer = false;//入荷タスクの表示と非表示
+    public bool ssencer = false;//入荷タスクの表示と非表示
     [SerializeField]TaskManager taskManager;
     private GameObject currentTask;
 
@@ -143,12 +143,7 @@ public class Player : MonoBehaviour
             cleantask.SetActive(false);
             pl = true;
         }
-        //タスク完了
-        else if (!cleantask.activeSelf)
-        {
-            pl = true;
-       
-        }
+        
     }
     private void DisplayTask()
     {
@@ -167,12 +162,7 @@ public class Player : MonoBehaviour
             displaytask.SetActive(false);
             pl = true;
         }
-        //タスク完了
-        else if (!displaytask.activeSelf)
-        {
-            pl = true;
-            
-        }
+        
     }
    
     private void Register()

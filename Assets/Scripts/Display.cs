@@ -69,6 +69,8 @@ public class PressToRiseAndFallBar : MonoBehaviour
                 targetToHide.SetActive(false);
                 hasHidden = true;
                 prayer.CompleateTask();
+                prayer.dsencer = false;
+                prayer.pl = true;
             }
             else
             {
