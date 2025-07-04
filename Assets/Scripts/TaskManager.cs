@@ -65,6 +65,8 @@ public class TaskManager : MonoBehaviour
         {
             AddTask(Task.display);
         }
+
+        AddTask(Task.cleaning);
     }
 
     /// <summary>
