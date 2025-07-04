@@ -23,10 +23,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GameStart();
-        SceneManager.sceneLoaded += SceneLoaded;
+        SceneManager.activeSceneChanged += ActiveSceneChanged;
     }
 
-    void SceneLoaded(Scene nextScene, LoadSceneMode mode)
+    void ActiveSceneChanged(Scene thisScene, Scene nextScene)
     {
         GameStart();
     }

@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using DG.Tweening;
-using static UnityEditor.PlayerSettings;
 
 public enum Task
 {
