@@ -4,7 +4,7 @@ public class npcdp : MonoBehaviour
 {
     public GameObject npcPrefab;
     public Transform spawnPoint;
-    public float spawnInterval = 10f; // ‰½•b‚²‚Æ‚É‘‚â‚·‚©
+    public float spawnInterval = 40f; // ‰½•b‚²‚Æ‚É‘‚â‚·‚©
 
     private void Start()
     {
@@ -23,3 +23,10 @@ public class npcdp : MonoBehaviour
         }
     }
 }
+/*ƒQ[ƒWw’è—p–¢Š®
+    if (!hasTriggered && currentGauge >= triggerMin && currentGauge <= triggerMax)
+{
+    npcToActivate.StartQueueing();
+    hasTriggered = true;
+}
+*/
