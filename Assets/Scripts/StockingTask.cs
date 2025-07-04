@@ -41,6 +41,8 @@ public class StockingTask : MonoBehaviour
     private float timer;
     private bool goUp;
 
+    [SerializeField] Player player;
+
     void Start()
     {
         if (isDebug) StartTask();
@@ -71,6 +73,7 @@ public class StockingTask : MonoBehaviour
                     Debug.Log("ƒ^ƒXƒNŠ®—¹");
                     StopTask();
                     isPlaying = false;
+                    player.taskfinish = true;
                 }
                 RandomMoveTarget();
             }
