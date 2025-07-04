@@ -77,7 +77,7 @@ public class TaskManager : MonoBehaviour
         GameManager.instance.GameClear();
     }
 
-    void AddTask(Task t)
+    public void AddTask(Task t)
     {
         switch (t)
         {
