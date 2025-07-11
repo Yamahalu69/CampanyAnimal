@@ -122,6 +122,7 @@ public class TaskManager : MonoBehaviour
         rtText.GetComponent<Text>().color = registerColor;
         rtText.GetComponent<Text>().text = "ƒŒƒW‘Å‚¿";
         sensorText.Add(taskGO, rtText);
+        GameObject.Find("AgryGage").GetComponent<GageManager>().targetObject = taskGO;
     }
 
     void CreateStockTaskGO()
