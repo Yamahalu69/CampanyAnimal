@@ -41,6 +41,8 @@ public class StockingTask : MonoBehaviour
     private float timer;
     private bool goUp;
 
+    private bool isEnteringFrame;
+
     [SerializeField] Player player;
 
     void Start()
@@ -51,6 +53,7 @@ public class StockingTask : MonoBehaviour
     void Update()
     {
         if (!isPlaying) return;
+        if (isEnteringFrame) isEnteringFrame = false;
 
         if (Input.GetKeyDown(KeyCode.Space) && isPlayable)
         {
@@ -143,6 +146,7 @@ public class StockingTask : MonoBehaviour
 
         isPlaying = true;
         isPlayable = true;
+        isEnteringFrame = true;
         counter = 0;
     }
 

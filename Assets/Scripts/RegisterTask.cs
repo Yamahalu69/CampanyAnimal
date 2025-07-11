@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Linq;
-using UnityEngine.Analytics;
-using NUnit.Framework;
 
 public class RegisterTask : MonoBehaviour
 {
@@ -117,7 +115,7 @@ public class RegisterTask : MonoBehaviour
                 if (counter == arrowsList.Count)
                 {
                     //タスク完了
-                    Debug.Log("タスク完了");
+                    //Debug.Log("タスク完了");
                     StopTask();
                     player.rsencer = false;
                     player.pl = true;
@@ -132,6 +130,7 @@ public class RegisterTask : MonoBehaviour
                 //間違った入力
                 //再スタート
                 StopAnimation();
+                StopTask();
                 StartTask();
             }
         }
@@ -193,12 +192,13 @@ public class RegisterTask : MonoBehaviour
 
     void StopTask()
     {
-
         foreach (GameObject o in instantObject.ToList())
         {
             Destroy(o);
         }
         instantObject.Clear();
+        talkList.Clear();
+        arrowSprites.Clear();
     }
 
     void CreateArrowObject()
