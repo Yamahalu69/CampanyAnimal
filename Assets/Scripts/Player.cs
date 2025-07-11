@@ -192,7 +192,7 @@ public class Player : MonoBehaviour
             pl = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.Space)==true)
+        if(Input.GetKeyDown(KeyCode.Space)&&ssencer==true)
         {
             pl= true;
         }
