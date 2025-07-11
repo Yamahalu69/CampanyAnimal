@@ -68,6 +68,8 @@ public class TaskManager : MonoBehaviour
             AddTask(Task.display);
         }
 
+        if (GameObject.Find("AgryGage")) Debug.Log("aaaa");
+
         AddTask(Task.cleaning);
         AddTask(Task.register);
         AddTask(Task.stocking);
