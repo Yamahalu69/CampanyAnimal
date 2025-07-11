@@ -12,7 +12,6 @@ public class Clean : MonoBehaviour
     [SerializeField] private GameObject cleantask;
     [SerializeField] private Text Enter;
     [SerializeField, Header("Å‘å“ü—Í‰ñ”")] private int maxcount;
-    [SerializeField] private float lastinput = 0;
      private int count;//Œ»İ‚Ì“ü—Í‰ñ”
 
     private bool hascompleted = false;
