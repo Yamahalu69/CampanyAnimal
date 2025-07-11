@@ -13,6 +13,9 @@ public enum Task
 
 public class TaskManager : MonoBehaviour
 {
+    [Header("ゲージ")]
+    public GageManager gageManager;
+
     [Header("色")]
     [Tooltip("入荷")]
     public Color stockColor;
@@ -68,8 +71,6 @@ public class TaskManager : MonoBehaviour
             AddTask(Task.display);
         }
 
-        if (GameObject.Find("AgryGage")) Debug.Log("aaaa");
-
         AddTask(Task.cleaning);
         AddTask(Task.register);
         AddTask(Task.stocking);
@@ -124,7 +125,7 @@ public class TaskManager : MonoBehaviour
         rtText.GetComponent<Text>().color = registerColor;
         rtText.GetComponent<Text>().text = "レジ打ち";
         sensorText.Add(taskGO, rtText);
-        GameObject.Find("AgryGage").GetComponent<GageManager>().targetObject = taskGO;
+        gageManager.targetObject = taskGO;
     }
 
     void CreateStockTaskGO()
