@@ -69,6 +69,8 @@ public class TaskManager : MonoBehaviour
         }
 
         AddTask(Task.cleaning);
+        AddTask(Task.register);
+        AddTask(Task.stocking);
     }
 
     /// <summary>
@@ -160,6 +162,7 @@ public class TaskManager : MonoBehaviour
 
     Vector3 TaskPos(Task task)
     {
+        //pos‚ğƒŠƒXƒg‚©‚ç‡”Ô‚ÉQÆ‚µ‚Ä•Ô‚·
         Vector3 pos = Vector3.zero;
         switch (task)
         {

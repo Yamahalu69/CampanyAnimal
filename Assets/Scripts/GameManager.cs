@@ -28,8 +28,11 @@ public class GameManager : MonoBehaviour
 
     void ActiveSceneChanged(Scene thisScene, Scene nextScene)
     {
-        taskManager = GameObject.Find("Manager").GetComponent<TaskManager>();
-        GameStart();
+        if (nextScene.name == "MainGameScene")
+        {
+            taskManager = GameObject.Find("Manager").GetComponent<TaskManager>();
+            GameStart();
+        }
     }
 
     void GameStart()
