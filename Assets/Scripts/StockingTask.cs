@@ -52,7 +52,7 @@ public class StockingTask : MonoBehaviour
     {
         if (!isPlaying) return;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && isPlayable)
+        if (Input.GetKeyDown(KeyCode.Space) && isPlayable)
         {
             InterruptTask();
         }
