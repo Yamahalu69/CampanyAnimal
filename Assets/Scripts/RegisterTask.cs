@@ -192,6 +192,16 @@ public class RegisterTask : MonoBehaviour
 
     void StopTask()
     {
+        StopAnimation();
+        //吹き出しオブジェクトがあるなら削除
+        if (talkList.Count != 0)
+        {
+            foreach (GameObject go in talkList)
+            {
+                Destroy(go);
+            }
+            talkList.Clear();
+        }
         foreach (GameObject o in instantObject.ToList())
         {
             Destroy(o);

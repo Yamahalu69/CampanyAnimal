@@ -7,7 +7,7 @@ using TMPro;
 public class Clean : MonoBehaviour
 {
     [SerializeField] private Player prayer;
-
+    [SerializeField] private float fallspeed;
     [SerializeField] private Slider bar;
     [SerializeField] private GameObject cleantask;
     [SerializeField] private Text Enter;
@@ -69,7 +69,7 @@ public class Clean : MonoBehaviour
                 }
             }
         }
-
+       
         if(Input.GetKeyUp(KeyCode.Return))
         {
             Enter.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
