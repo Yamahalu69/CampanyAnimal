@@ -2,6 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Clean : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Clean : MonoBehaviour
 
     [SerializeField] private Slider bar;
     [SerializeField] private GameObject cleantask;
+    [SerializeField] private Text Enter;
     [SerializeField, Header("Å‘å“ü—Í‰ñ”")] private int maxcount;
      private int count;//Œ»İ‚Ì“ü—Í‰ñ”
 
@@ -20,7 +22,8 @@ public class Clean : MonoBehaviour
     private bool inputenabled = false;
     private void Start()
     {
-        if(bar != null)
+        Enter.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+        if (bar != null)
         {
             bar.value = 0f;
         }
@@ -49,6 +52,7 @@ public class Clean : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             count++;
+            Enter.color = new Color(255f, 0f, 0f, 0.5f);
 
             float progress = (float)count / maxcount;
             bar.value = Mathf.Clamp01(progress);
@@ -64,6 +68,11 @@ public class Clean : MonoBehaviour
                     prayer.pl = true;
                 }
             }
+        }
+
+        if(Input.GetKeyUp(KeyCode.Return))
+        {
+            Enter.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
         }
 
     }   
