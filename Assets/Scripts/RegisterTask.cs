@@ -86,7 +86,7 @@ public class RegisterTask : MonoBehaviour
     {
         if (!isPlaying) return;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             InterruptTask();
         }

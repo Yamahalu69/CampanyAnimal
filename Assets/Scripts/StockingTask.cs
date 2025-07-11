@@ -54,6 +54,7 @@ public class StockingTask : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isPlayable)
         {
+            player.pl = true;
             InterruptTask();
         }
 
