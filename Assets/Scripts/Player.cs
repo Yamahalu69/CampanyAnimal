@@ -171,7 +171,7 @@ public class Player : MonoBehaviour
    
     private void Register()
     {
-        if (Input.GetKeyDown(KeyCode.Return)&&rsencer==true)
+        if (Input.GetKeyDown(KeyCode.Return)&&rsencer==true&&pl==true)
         {
             registerTask.StartTask();
             pl = false;
@@ -186,13 +186,13 @@ public class Player : MonoBehaviour
     private void Stocking()
     {
         //タスク開始
-        if (Input.GetKeyDown(KeyCode.Return)&&ssencer==true)
+        if (Input.GetKeyDown(KeyCode.Return)&&ssencer==true&&pl==true)
         {
             stockingTask.StartTask();
             pl = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift)==true)
+        if(Input.GetKeyDown(KeyCode.Space)==true)
         {
             pl= true;
         }
