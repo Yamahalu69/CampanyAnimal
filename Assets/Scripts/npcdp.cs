@@ -4,7 +4,7 @@ public class npcdp : MonoBehaviour
 {
     public GameObject npcPrefab;
     public Transform spawnPoint;
-    public float spawnInterval = 40f; // ‰½•b‚²‚Æ‚É‘‚â‚·‚©
+    public float spawnInterval = 30f; // ‰½•b‚²‚Æ‚É‘‚â‚·‚©
 
     private void Start()
     {
