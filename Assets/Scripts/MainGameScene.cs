@@ -15,7 +15,11 @@ public class MainGameScene : MonoBehaviour
         {
             SceneManager.LoadScene("MainGameScene");//シーン名を入れる
         }
-        else if(Input.GetKey(KeyCode.Return))
+        else if (Input.GetKey(KeyCode.RightShift))//特定のキーを入れる　そのキーを入力するとシーンが移動する
+        {
+            SceneManager.LoadScene("MainGameScene");//シーン名を入れる
+        }
+        else if (Input.GetKey(KeyCode.Return))
         {
             SceneManager.LoadScene("Operation");
         }
