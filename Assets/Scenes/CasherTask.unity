@@ -716,6 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceeb44916996bb14497cf943c87421a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gageManager: {fileID: 0}
   stockColor: {r: 0.3137255, g: 0.627451, b: 0.78431374, a: 1}
   displayColor: {r: 0.98039216, g: 0.74509805, b: 0, a: 1}
   cleanColor: {r: 0.78431374, g: 0.47058824, b: 0.98039216, a: 1}
