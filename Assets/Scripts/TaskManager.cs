@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.VisualScripting.Dependencies.NCalc;
+using System.Linq;
 
 public enum Task
 {
@@ -74,6 +76,11 @@ public class TaskManager : MonoBehaviour
         AddTask(Task.cleaning);
         AddTask(Task.register);
         AddTask(Task.stocking);
+    }
+
+    public List<GameObject> TaskGOs()
+    {
+        return sensorText.Keys.ToList();
     }
 
     /// <summary>
