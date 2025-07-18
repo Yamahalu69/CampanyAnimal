@@ -26,22 +26,19 @@ public class GameManager : MonoBehaviour
 
         public void ActionEvent()
         {
+            triggered = true;
             switch (actionEvent)
             {
                 case EventList.CustomerRaid:
-                    triggered = true;
                     CustomerRaid();
                     break;
                 case EventList.AddStockTask:
-                    triggered = true;
                     AddStockTask();
                     break;
                 case EventList.AddDisplayTask:
-                    triggered = true;
                     AddDisplayTask();
                     break;
                 case EventList.StopRandomSpawn:
-                    triggered = true;
                     StopRandomSpawn();
                     break;
             }
@@ -79,6 +76,7 @@ public class GameManager : MonoBehaviour
     {
         new TimeEvent(10, TimeEvent.EventList.CustomerRaid),
         new TimeEvent(20, TimeEvent.EventList.AddDisplayTask),
+        new TimeEvent(30, TimeEvent.EventList.AddStockTask),
     };
 
     void Awake()
@@ -124,6 +122,7 @@ public class GameManager : MonoBehaviour
     void GameStart()
     {
         taskManager.Init();
+        timer = 0;
     }
 
     public void GameClear()

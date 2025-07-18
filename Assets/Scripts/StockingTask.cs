@@ -53,7 +53,17 @@ public class StockingTask : MonoBehaviour
     void Update()
     {
         if (!isPlaying) return;
-        if (isEnteringFrame) isEnteringFrame = false;
+        if (isEnteringFrame)
+        {
+            if (Input.GetKey(KeyCode.Return))
+            {
+                return;
+            }
+            else
+            {
+                isEnteringFrame = false;
+            }
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && isPlayable)
         {
@@ -74,7 +84,7 @@ public class StockingTask : MonoBehaviour
                 if (counter >= task)
                 {
                     //タスク完了
-                    Debug.Log("タスク完了");
+                    //Debug.Log("タスク完了");
                     StopTask();
                     isPlaying = false;
                     player.ssencer = false;

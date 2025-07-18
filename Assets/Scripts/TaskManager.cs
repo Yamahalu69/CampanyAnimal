@@ -253,7 +253,7 @@ public class TaskManager : MonoBehaviour
             case Task.cleaning:
                 for (int i = 0; i < cleanGuidePos.Count; i++)
                 {
-                    if (usedCleanIndexes.Contains(i))
+                    if (!usedCleanIndexes.Contains(i))
                     {
                         usedCleanIndexes.Add(i);
                         index = i;
