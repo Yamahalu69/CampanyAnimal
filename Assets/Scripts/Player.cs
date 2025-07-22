@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
         if (!dsencer) return;
 
         //タスク開始
-        if (Input.GetKeyDown(KeyCode.Return) && dsencer == true)
+        if (Input.GetKeyUp(KeyCode.Return) && dsencer == true)
         {
             displaytask.SetActive(true);
             pl = false;

@@ -10,7 +10,7 @@ public class Title : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.Return))//特定のキーを入れる　そのキーを入力するとシーンが移動する
+        if (Input.GetKeyDown(KeyCode.Return))//特定のキーを入れる　そのキーを入力するとシーンが移動する
         {
             SceneManager.LoadScene("TitleScene");//シーン名を入れる
         }
