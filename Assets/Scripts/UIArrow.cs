@@ -4,7 +4,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(RectTransform))]
 public class UIArrow : MonoBehaviour
 {
-    [SerializeField, Header("タスク位置案内")] private Transform taskpos=default;
+    [SerializeField, Header("タスク位置案内")] private Transform taskpos =default;
     [SerializeField] private Camera maincamera;
     [SerializeField] private Image arrow = default;
     private RectTransform rectTransform;
@@ -18,6 +18,18 @@ public class UIArrow : MonoBehaviour
     {
         var list = GameManager.instance.taskManager.TaskGOs();
         maincamera=Camera.main;
+    }
+
+    private void Update()
+    {
+        if(taskpos)
+        {
+            arrow.gameObject.SetActive(true);
+        }
+        else
+        {
+            arrow.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
