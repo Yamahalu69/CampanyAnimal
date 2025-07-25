@@ -46,7 +46,7 @@ public class TaskManager : MonoBehaviour
     public List<Transform> dispGuidePos = new List<Transform>();
 
     [Header("入荷タスク案内の座標")]
-    public List <Transform> stockGuidePos = new List<Transform>();
+    public List<Transform> stockGuidePos = new List<Transform>();
 
     [Header("清掃タスク案内の座標")]
     public List<Transform> cleanGuidePos = new List<Transform>();
@@ -70,6 +70,8 @@ public class TaskManager : MonoBehaviour
 
 
     private Dictionary<GameObject, GameObject> sensorText = new Dictionary<GameObject, GameObject>();
+
+    public int sensorTextCount => sensorText.Count;
 
     void Start()
     {
@@ -103,7 +105,7 @@ public class TaskManager : MonoBehaviour
     /// </summary>
     public void CompletedTask()
     {
-        GameManager.instance.GameClear();
+        //GameManager.instance.GameClear();
     }
 
     public void AddTask(Task t)
