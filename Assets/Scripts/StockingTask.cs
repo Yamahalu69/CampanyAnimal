@@ -41,6 +41,10 @@ public class StockingTask : MonoBehaviour
     private float timer;
     private bool goUp;
 
+    private bool isEnteringFrame;
+
+    [SerializeField] Player player;
+
     void Start()
     {
         if (isDebug) StartTask();
@@ -49,9 +53,21 @@ public class StockingTask : MonoBehaviour
     void Update()
     {
         if (!isPlaying) return;
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) && isPlayable)
+        if (isEnteringFrame)
         {
+            if (Input.GetKey(KeyCode.Return))
+            {
+                return;
+            }
+            else
+            {
+                isEnteringFrame = false;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && isPlayable)
+        {
+            player.pl = true;
             InterruptTask();
         }
 
@@ -68,9 +84,12 @@ public class StockingTask : MonoBehaviour
                 if (counter >= task)
                 {
                     //タスク完了
-                    Debug.Log("タスク完了");
+                    //Debug.Log("タスク完了");
                     StopTask();
                     isPlaying = false;
+                    player.ssencer = false;
+                    player.pl = true;
+                    player.CompleateTask();
                 }
                 RandomMoveTarget();
             }
@@ -137,6 +156,7 @@ public class StockingTask : MonoBehaviour
 
         isPlaying = true;
         isPlayable = true;
+        isEnteringFrame = true;
         counter = 0;
     }
 

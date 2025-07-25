@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
+    public float spawnInterval = 2f;  // ŽžŠÔŠÔŠui•bj
+
     public float timeRemaining = 300f; //5•ª@= 300•b
     public bool timerIsRunning = true;
     public TextMeshProUGUI timeText; //Text UI(TextMeshPro)
@@ -19,6 +21,11 @@ public class Timer : MonoBehaviour
             {
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
+                if (timeRemaining >= spawnInterval)
+                {
+                    Spawn();
+                    timeRemaining = 0f;
+                }
             }
             else
             {
@@ -41,5 +48,9 @@ public class Timer : MonoBehaviour
         float seconds = Mathf.FloorToInt(timeToDisplay % 60f);
 
         timeText.text = string.Format("{0:00}:{1:00}",minutes,seconds);
+    }
+    void Spawn()
+    {
+        GameManager.instance.taskManager.AddTask(Task.cleaning);
     }
 }

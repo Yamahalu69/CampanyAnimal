@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class PressToRiseAndFallBar : MonoBehaviour
 {
+    [SerializeField] private Player prayer;
+
     [Header("バーと非表示対象")]
     [SerializeField] private Image bar;               // UIバー
     [SerializeField] private GameObject targetToHide; // 非表示にする対象オブジェクト
@@ -43,7 +45,7 @@ public class PressToRiseAndFallBar : MonoBehaviour
 
     void Update()
     {
-        if (bar == null || targetToHide == null || hasHidden) return;
+        if (bar == null || targetToHide == null) return;
 
         // === 上昇処理 ===
         if (Input.GetKey(KeyCode.Return) && !isFalling && !isInputLocked)
@@ -64,8 +66,13 @@ public class PressToRiseAndFallBar : MonoBehaviour
         {
             if (currentHeight >= goalMin && currentHeight <= goalMax)
             {
+                Reset();
+
                 targetToHide.SetActive(false);
                 hasHidden = true;
+                prayer.CompleateTask();
+                prayer.dsencer = false;
+                prayer.pl = true;
             }
             else
             {
@@ -88,5 +95,13 @@ public class PressToRiseAndFallBar : MonoBehaviour
 
         // === バー位置の更新 ===
         bar.rectTransform.anchoredPosition = new Vector2(initialPos.x, initialPos.y + currentHeight);
+    }
+
+    public void Reset()
+    {
+        currentHeight = 0f;
+        bar.rectTransform.anchoredPosition = initialPos;
+        isFalling = false;
+        isInputLocked = false;
     }
 }

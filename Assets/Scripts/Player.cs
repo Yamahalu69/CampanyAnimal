@@ -6,15 +6,19 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float sp;//プレイヤーのスピード
-    private bool pl = true;//プレイヤーがタスクを行っているか
+    public bool pl = true;//プレイヤーがタスクを行っているか
     [SerializeField] private GameObject cleantask;//清掃タスク
-    private bool csencer = false;//清掃タスクの表示と非表示に使用
+    public bool csencer = false;//清掃タスクの表示と非表示に使用
     [SerializeField] private GameObject displaytask;//前陳タスク
-    private bool dsencer = false;//前陳タスクの表示と非表示に使用
+    public bool dsencer = false;//前陳タスクの表示と非表示に使用
     [SerializeField] RegisterTask registerTask;//レジ打ちタスク
-    private bool rsencer = false;//レジ打ちタスクの表示と非表示
+    public bool rsencer = false;//レジ打ちタスクの表示と非表示
     [SerializeField] StockingTask stockingTask;//入荷タスク
-    private bool ssencer = false;//入荷タスクの表示と非表示
+    public bool ssencer = false;//入荷タスクの表示と非表示
+    [SerializeField]TaskManager taskManager;
+    private GameObject currentTask;
+    private Vector3 vector = new Vector3(0, 0, 0);
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -47,16 +51,26 @@ public class Player : MonoBehaviour
         }
         
     }
+    private void FixedUpdate()
+    {
+        float length = Mathf.Sqrt((vector.x * vector.x) + (vector.z * vector.z));
+        if ((0 < length))
+        {
+            vector = vector / length;
+            vector *= sp;
+            transform.position += vector;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
+        currentTask=other.gameObject;
         if (other.gameObject.CompareTag("cleaning"))
         {
             csencer = true;
         }     
         else if (other.gameObject.CompareTag("display"))
         {
-            Debug.Log("aaa");
             dsencer = true;
         }
         else if(other.gameObject.CompareTag("register"))
@@ -88,11 +102,12 @@ public class Player : MonoBehaviour
         {
             ssencer = false;
         }
+            
     }
 
     private void Playermove()
     {
-        Vector3 vector =new Vector3(0,0,0);
+        vector = Vector3.zero;
         if(pl==true)
         {
             //四方向移動
@@ -114,14 +129,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        float length = Mathf.Sqrt((vector.x * vector.x) + (vector.z * vector.z));
-
-        if ((0 < length))
-        {
-            vector = vector / length;
-            vector *= sp;
-            transform.position += vector;
-        }
+        
     }
 
     private void CleanTask()
@@ -135,44 +143,36 @@ public class Player : MonoBehaviour
             pl = false;
         }
         //タスク中断
-        if (Input.GetKeyDown(KeyCode.Space) && csencer == true)
+        else if (Input.GetKeyDown(KeyCode.Space) && csencer == true)
         {
             cleantask.SetActive(false);
             pl = true;
         }
-        //タスク完了
-        if (!cleantask.activeSelf)
-        {
-            pl = true;
-        }
+        
     }
     private void DisplayTask()
     {
         if (!dsencer) return;
 
         //タスク開始
-        if (Input.GetKeyDown(KeyCode.Return) && dsencer == true)
+        if (Input.GetKeyUp(KeyCode.Return) && dsencer == true)
         {
             displaytask.SetActive(true);
             pl = false;
         }
 
         //タスク中断
-        if (Input.GetKeyDown(KeyCode.Space) && dsencer == true) 
+        else if (Input.GetKeyDown(KeyCode.Space) && dsencer == true) 
         {
             displaytask.SetActive(false);
             pl = true;
         }
-        //タスク完了
-        if (!displaytask.activeSelf)
-        {
-            pl = true;
-        }
+        
     }
    
     private void Register()
     {
-        if (Input.GetKeyDown(KeyCode.Return)&&rsencer==true)
+        if (Input.GetKeyDown(KeyCode.Return)&&rsencer==true&&pl==true)
         {
             registerTask.StartTask();
             pl = false;
@@ -187,16 +187,20 @@ public class Player : MonoBehaviour
     private void Stocking()
     {
         //タスク開始
-        if (Input.GetKeyDown(KeyCode.Return)&&ssencer==true)
+        if (Input.GetKeyDown(KeyCode.Return)&&ssencer==true&&pl==true)
         {
             stockingTask.StartTask();
             pl = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift)==true)
+        if(Input.GetKeyDown(KeyCode.Space)&&ssencer==true)
         {
             pl= true;
         }
     }
 
+    public void CompleateTask()
+    {
+        taskManager.DeleteSensor(currentTask);
+    }
 }

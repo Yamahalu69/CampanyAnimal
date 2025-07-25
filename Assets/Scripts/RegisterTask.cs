@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Linq;
-using UnityEngine.Analytics;
-using NUnit.Framework;
 
 public class RegisterTask : MonoBehaviour
 {
@@ -75,6 +73,8 @@ public class RegisterTask : MonoBehaviour
 
     private int arrowRemain;
 
+    [SerializeField] Player player;
+
     void Start()
     {
         if (isDebug) StartTask();
@@ -84,7 +84,7 @@ public class RegisterTask : MonoBehaviour
     {
         if (!isPlaying) return;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             InterruptTask();
         }
@@ -115,8 +115,11 @@ public class RegisterTask : MonoBehaviour
                 if (counter == arrowsList.Count)
                 {
                     //タスク完了
-                    Debug.Log("タスク完了");
+                    //Debug.Log("タスク完了");
                     StopTask();
+                    player.rsencer = false;
+                    player.pl = true;
+                    player.CompleateTask();
                 }
 
                 //表示更新
@@ -127,6 +130,7 @@ public class RegisterTask : MonoBehaviour
                 //間違った入力
                 //再スタート
                 StopAnimation();
+                StopTask();
                 StartTask();
             }
         }
@@ -188,12 +192,23 @@ public class RegisterTask : MonoBehaviour
 
     void StopTask()
     {
-
+        StopAnimation();
+        //吹き出しオブジェクトがあるなら削除
+        if (talkList.Count != 0)
+        {
+            foreach (GameObject go in talkList)
+            {
+                Destroy(go);
+            }
+            talkList.Clear();
+        }
         foreach (GameObject o in instantObject.ToList())
         {
             Destroy(o);
         }
         instantObject.Clear();
+        talkList.Clear();
+        arrowSprites.Clear();
     }
 
     void CreateArrowObject()

@@ -9,7 +9,7 @@ public class npcManger : MonoBehaviour
     public Transform queuePoint;          // 待機列のスタート地点
     public Transform workPoint;           // 実際に仕事する場所（列の先頭の場所）
     public Transform removePoint;         // 消える場所
-    public float waitTime = 2f;           // 待機時間や処理時間
+    public float waitTime = 3f;           // 待機時間や処理時間
     private NavMeshAgent agent;
 
     private static Queue<npcManger> queue = new Queue<npcManger>();

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5781846453126746900}
   - component: {fileID: 3427455165314974051}
   - component: {fileID: 422222188667116299}
-  - component: {fileID: 6912497222314010836}
+  - component: {fileID: -1242624304542117047}
   m_Layer: 0
   m_Name: TorusB
   m_TagString: Untagged
@@ -119,8 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emissionColor: {r: 0, g: 1.5406928, b: 6.1957893, a: 1}
   intensity: 5
---- !u!64 &6912497222314010836
-MeshCollider:
+--- !u!135 &-1242624304542117047
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -134,10 +134,9 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  serializedVersion: 3
+  m_Radius: 1.05
+  m_Center: {x: 0, y: 0, z: 0}
