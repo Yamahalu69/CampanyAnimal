@@ -209,6 +209,7 @@ public class RegisterTask : MonoBehaviour
         instantObject.Clear();
         talkList.Clear();
         arrowSprites.Clear();
+        isPlaying = false;
     }
 
     void CreateArrowObject()
