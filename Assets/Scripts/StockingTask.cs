@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class StockingTask : MonoBehaviour
 {
@@ -42,6 +44,8 @@ public class StockingTask : MonoBehaviour
     private bool goUp;
 
     private bool isEnteringFrame;
+
+    private Text discText;
 
     [SerializeField] Player player;
 
@@ -158,10 +162,14 @@ public class StockingTask : MonoBehaviour
         isPlayable = true;
         isEnteringFrame = true;
         counter = 0;
+
+        discText = sideBar.GetComponentInChildren<Text>();
+        StartAnimation();
     }
 
     void StopTask()
     {
+        StopAnimation();
         Destroy(barGO);
     }
 
@@ -177,5 +185,15 @@ public class StockingTask : MonoBehaviour
         Debug.Log("ÉQÅ[ÉÄÇíÜífÇµÇ‹ÇµÇΩ");
         StopTask();
         isPlaying = false;
+    }
+
+    void StartAnimation()
+    {
+        discText.DOColor(new Color(1f, 0, 0), 0.5f).SetLoops(-1, LoopType.Yoyo);
+    }
+
+    void StopAnimation()
+    {
+        discText.DOKill();
     }
 }

@@ -24,7 +24,7 @@ public class TimeCont : MonoBehaviour
         {
             currentTime = 0;
             // 時間が終了した時の処理（例えばゲームオーバーとか）
-            GameManager.instance.GameOver();
+            GameManager.instance.JudgeGameClear();
         }
 
         // 分と秒に変換して表示
