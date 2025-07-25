@@ -150,7 +150,7 @@ public class RegisterTask : MonoBehaviour
         if (talkList.Count == 0) return;
         foreach (GameObject talkGO in talkList)
         {
-            talkGO.transform.DOComplete();
+            talkGO.transform.DOKill(true);
         }
     }
 
