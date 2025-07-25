@@ -4,7 +4,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(RectTransform))]
 public class UIArrow : MonoBehaviour
 {
-    [SerializeField, Header("タスク位置案内")] private Transform taskpos =default;
+    [Header("タスク位置案内")]
+    [SerializeField] private Transform taskpos =default;
     [SerializeField] private Camera maincamera;
     [SerializeField] private Image arrow = default;
     private RectTransform rectTransform;
@@ -22,21 +23,16 @@ public class UIArrow : MonoBehaviour
 
     private void Update()
     {
-        if(taskpos)
-        {
-            arrow.gameObject.SetActive(true);
-        }
-        else
-        {
-            arrow.gameObject.SetActive(false);
-        }
+       
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
+        if (!taskpos) return;
+
         float canvasscale = transform.root.localScale.z;
-        var center = 0.5f * new Vector3(Screen.width, Screen.height);
+        var center = 0.5f * new Vector3(Screen.width, Screen.height)*0.5f;
 
         var pos = maincamera.WorldToScreenPoint(taskpos.position)-center;
 
@@ -45,10 +41,6 @@ public class UIArrow : MonoBehaviour
             pos.x = -pos.x;
             pos.y = -pos.y;
 
-            if(Mathf.Approximately(pos.y,0f))
-            {
-                pos.y=-center.y;
-            }
         }
 
         var halfsize = 0.5f*canvasscale*rectTransform.sizeDelta;
@@ -65,12 +57,17 @@ public class UIArrow : MonoBehaviour
         }
 
         rectTransform.anchoredPosition = pos/canvasscale;
-
-        arrow.enabled = isoffscreen;
         if(isoffscreen)
         {
-            arrow.rectTransform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(pos.y, pos.x) * Mathf.Rad2Deg);
+            Vector2 direction = pos.normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            arrow.rectTransform.eulerAngles = new Vector3(0f, 0f, angle);
+        }
+        else
+        {
+            arrow.rectTransform.eulerAngles = Vector3.zero;
         }
 
+         arrow.enabled = true;
     }
 }
