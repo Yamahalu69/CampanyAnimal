@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 1102521693668761444}
   - component: {fileID: 4099166500781740225}
   - component: {fileID: 2235999278488495115}
-  - component: {fileID: 1797961926312221955}
+  - component: {fileID: -7060181547527025639}
   m_Layer: 0
   m_Name: poteti tana
   m_TagString: Untagged
@@ -433,7 +433,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1797961926312221955
+--- !u!65 &-7060181547527025639
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -452,7 +452,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.009190015, y: 0.19331402, z: 0.010000001}
+  m_Size: {x: 0.009190015, y: 0.19331402, z: 0.01}
   m_Center: {x: 0, y: 0.099784255, z: 0}
 --- !u!1 &358228308845083931
 GameObject:

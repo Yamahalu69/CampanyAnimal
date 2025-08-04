@@ -7,6 +7,7 @@ public class UIArrow : MonoBehaviour
     [SerializeField, Header("タスク位置案内")] private Transform taskpos = default;
     [SerializeField] private Camera maincamera;
     [SerializeField] private Image arrow = default;
+    [SerializeField] private GameObject pos;
     private RectTransform rectTransform;
 
     private void Awake()
@@ -20,7 +21,13 @@ public class UIArrow : MonoBehaviour
         maincamera = Camera.main;
     }
 
-    
+    private void Update()
+    {
+        if (pos==null)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     // Update is called once per frame
     void LateUpdate()
