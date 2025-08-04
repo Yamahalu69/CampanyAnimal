@@ -7,7 +7,7 @@ public class UIArrow : MonoBehaviour
     [SerializeField, Header("タスク位置案内")] private Transform taskpos = default;
     [SerializeField] private Camera maincamera;
     [SerializeField] private Image arrow = default;
-    [SerializeField] private GameObject pos;
+    public GameObject pos;
     private RectTransform rectTransform;
 
     private void Awake()
