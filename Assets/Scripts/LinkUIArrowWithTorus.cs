@@ -11,7 +11,7 @@ public class LinkUIArrowWithTorus : MonoBehaviour
 
     void Awake()
     {
-        var canvas = GameObject.Find("Canvas");
+        var canvas = GameObject.Find("ArrowUI");
         GameObject obj;
         switch (task)
         {
