@@ -30,12 +30,29 @@ public class PanelChange : MonoBehaviour
             {
                 Operation2.SetActive(false);
                 Operation3.SetActive(true);
+            }  
+        }
+        else if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            SceneManager.LoadScene("MainGameScene");
+        }
+        
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if (Operation1.activeSelf)
+            {
+                SceneManager.LoadScene("TitleScene");
+            }
+            else if (Operation2.activeSelf)
+            {
+                Operation2.SetActive(false);
+                Operation1.SetActive(true);
             }
             else if (Operation3.activeSelf)
             {
-                SceneManager.LoadScene("MainGameScene");
+                Operation3.SetActive(false);
+                Operation2.SetActive(true);
             }
         }
-        
     }
 }
