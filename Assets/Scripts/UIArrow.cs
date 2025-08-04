@@ -7,7 +7,7 @@ public class UIArrow : MonoBehaviour
     [SerializeField, Header("タスク位置案内")] private Transform taskpos = default;
     [SerializeField] private Camera maincamera;
     [SerializeField] private Image arrow = default;
-    public GameObject pos;
+    private GameObject pos;
     private RectTransform rectTransform;
 
     private void Awake()
@@ -70,5 +70,12 @@ public class UIArrow : MonoBehaviour
             ?new Vector3(0f,0f,Mathf.Atan2(pos.y,pos.x)* Mathf.Rad2Deg)
             :Vector3.zero;
 
+    }
+
+    //高田追加分
+    public void SetTargetObject(GameObject target)
+    {
+        pos = target;
+        taskpos = target.transform;
     }
 }
