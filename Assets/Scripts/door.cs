@@ -23,7 +23,7 @@ public class door : MonoBehaviour
         count++;
 
         Vector3 direction = other.transform.position - transform.position;
-        float dot = Vector3.Dot(transform.forward, direction.normalized);
+        float dot = Vector3.Dot(transform.forward,direction.normalized);
 
         float angle = (dot > 0) ? openangle : -openangle;
         target = Quaternion.Euler(0f, angle, 0f);
