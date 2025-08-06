@@ -19,6 +19,7 @@ public class PanelChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //âÊñ ÇêiÇﬂÇÈ
         if(Input.GetKeyDown(KeyCode.Return))
         {
             if(Operation1.activeSelf)
@@ -30,14 +31,21 @@ public class PanelChange : MonoBehaviour
             {
                 Operation2.SetActive(false);
                 Operation3.SetActive(true);
-            }  
+            }
+            
         }
-        else if(Input.GetKeyDown(KeyCode.LeftShift))
+
+        if (Operation3.activeSelf)
         {
-            SceneManager.LoadScene("MainGameScene");
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                SceneManager.LoadScene("MainGameScene");
+            }
         }
-        
-        if(Input.GetKeyDown(KeyCode.Space))
+
+
+        //âÊñ ÇñﬂÇ∑
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (Operation1.activeSelf)
             {
