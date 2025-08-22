@@ -5,10 +5,12 @@ using UnityEngine.UI;
 public class UIArrow : MonoBehaviour
 {
     [SerializeField, Header("タスク位置案内")] private Transform taskpos = default;
-    [SerializeField] private Camera maincamera;
+    [SerializeField] private GameObject maincameraGO;
     [SerializeField] private Image arrow = default;
     private GameObject pos;
     private RectTransform rectTransform;
+
+    private Camera maincamera;
 
     private void Awake()
     {
@@ -18,7 +20,7 @@ public class UIArrow : MonoBehaviour
     void Start()
     {
         var list = GameManager.instance.taskManager.TaskGOs();
-        maincamera = Camera.main;
+        maincameraGO = GameObject.Find("Main Camera");
     }
 
     private void Update()
@@ -33,6 +35,11 @@ public class UIArrow : MonoBehaviour
     void LateUpdate()
     {
         if (!taskpos) return;
+
+        if (maincamera == null)
+        {
+            bool b = maincameraGO.TryGetComponent<Camera>(out maincamera);
+        }
 
         float canvasscale = transform.root.localScale.z;
         var center =new Vector3(Screen.width, Screen.height) * 0.5f;

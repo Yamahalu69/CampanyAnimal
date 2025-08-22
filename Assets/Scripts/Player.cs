@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     private GameObject currentTask;
     private Vector3 vector = new Vector3(0, 0, 0);
 
+    private Vector3 vec = Vector3.zero;
+    [SerializeField] private float rotation = 5f;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -129,6 +132,13 @@ public class Player : MonoBehaviour
             }
         }
 
+        if(vec != Vector3.zero)
+        {
+            Vector3 movedirection = new Vector3(vector.x,0f,vector.z);
+
+            Quaternion targetrotation = Quaternion.LookRotation(movedirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation,targetrotation,rotation*Time.deltaTime);
+        }
         
     }
 
