@@ -17,7 +17,7 @@ public class Taskcamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(displaytask == true)
+        if(displaytask.activeSelf)
         {
             maincamera.SetActive (false);
             subcamera.SetActive (true);
