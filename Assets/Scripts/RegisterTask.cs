@@ -177,14 +177,11 @@ public class RegisterTask : MonoBehaviour
         CreateArrowObject();
 
         //矢印残り数表示オブジェクト生成
-        if (GameObject.Find("ArrowRemain(Clone)") == null)
-        {
-            GameObject remainObject = Instantiate(arrowRemainObject, remainTransform.position, Quaternion.identity);
-            remainText = GameObject.Find("ArrowRemainText").GetComponent<Text>();
-            remainObject.transform.SetParent(canvas.transform);
-            remainObject.transform.position = remainTransform.position;
-            instantObject.Add(remainObject);
-        }
+        GameObject remainObject = Instantiate(arrowRemainObject, remainTransform.position, Quaternion.identity);
+        remainText = remainObject.GetComponentInChildren<Text>();
+        remainObject.transform.SetParent(canvas.transform);
+        remainObject.transform.position = remainTransform.position;
+        instantObject.Add(remainObject);
 
         //表示更新
         View();
