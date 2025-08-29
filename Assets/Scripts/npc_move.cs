@@ -9,6 +9,7 @@ public class npc_move : MonoBehaviour
 
     public float returnDelay = 30f;
     public float disappearDistance = 0.5f;
+    
 
     void Start()
     {
@@ -41,4 +42,5 @@ public class npc_move : MonoBehaviour
             }
         }
     }
+    
 }

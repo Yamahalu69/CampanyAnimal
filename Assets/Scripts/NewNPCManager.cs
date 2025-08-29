@@ -9,6 +9,7 @@ public class NewNPCManager : MonoBehaviour
     private NavMeshAgent agent; // NavMeshAgentコンポーネント
     private int currentPointIndex = 0; // 現在のターゲットポイント
     private bool isMoving = false; // NPCが移動中かどうか
+    public Transform destination;
 
     void Start()
     {
@@ -60,5 +61,9 @@ public class NewNPCManager : MonoBehaviour
     {
         currentPointIndex = Random.Range(0, points.Length);
     }
-
+    // NPCを指定された位置に移動させるメソッド
+    public void MoveToPosition()
+    {
+        agent.SetDestination(destination.position);
+    }
 }

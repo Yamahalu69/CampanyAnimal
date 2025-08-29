@@ -4262,6 +4262,7 @@ GameObject:
   - component: {fileID: 1292327584}
   - component: {fileID: 1292327582}
   - component: {fileID: 1292327589}
+  - component: {fileID: 1292327590}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -4396,6 +4397,20 @@ MonoBehaviour:
   - {fileID: 945351055}
   - {fileID: 297089970}
   waitTime: 2
+  destination: {fileID: 1348104211}
+--- !u!114 &1292327590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292327581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f4d79b2c7bfaf048907952c8298ddf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcController: {fileID: 1292327589}
 --- !u!1001 &1298845400
 PrefabInstance:
   m_ObjectHideFlags: 0
