@@ -183,7 +183,7 @@ public class StockingTask : MonoBehaviour
 
     void InterruptTask()
     {
-        Debug.Log("ƒQ[ƒ€‚ğ’†’f‚µ‚Ü‚µ‚½");
+        //Debug.Log("ƒQ[ƒ€‚ğ’†’f‚µ‚Ü‚µ‚½");
         StopTask();
         isPlaying = false;
     }
