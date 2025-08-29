@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public TaskManager taskManager;
 
     private float timer;
+    private bool timeCount =false;
 
     public bool spawnTask = true;
     private float spawnTriggerTime = 0;
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;
+        if (timeCount) timer += Time.deltaTime;
         foreach (var e in events)
         {
             if (!e.triggered && timer >= e.triggerTime)
@@ -62,6 +63,11 @@ public class GameManager : MonoBehaviour
         {
             taskManager = GameObject.Find("Manager").GetComponent<TaskManager>();
             GameStart();
+            timeCount = true;
+        }
+        else
+        {
+            timeCount = false;
         }
     }
 
@@ -88,15 +94,18 @@ public class GameManager : MonoBehaviour
     private void GameClear()
     {
         SceneManager.LoadScene("GameClearScene");
+        AudioManager.instance.GameclearBGM();
     }
 
     private void GameOver()
     {
         SceneManager.LoadScene("GameOverScene");
+        AudioManager.instance.GameoverBGM();
     }
 
     public void OverWorkGameOver()
     {
         SceneManager.LoadScene("GameOverSceneOverWork");
+        AudioManager.instance.GameoverBGM();
     }
 }

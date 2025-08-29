@@ -17,6 +17,9 @@ public class TaskManager : MonoBehaviour
     [Header("ゲージ")]
     public GageManager gageManager;
 
+    [Header("NPC")]
+    public NewNPCManager newNPCManager;
+
     [Header("色")]
     [Tooltip("入荷")]
     public Color stockColor;
@@ -155,6 +158,7 @@ public class TaskManager : MonoBehaviour
         rtText.GetComponent<Text>().text = "レジ打ち";
         sensorText.Add(taskGO, rtText);
         gageManager.targetObject = taskGO;
+        newNPCManager.targetObject = taskGO;
     }
 
     void CreateStockTaskGO()

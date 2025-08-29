@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening.Core.Easing;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,6 +11,7 @@ public class NewNPCManager : MonoBehaviour
     private int currentPointIndex = 0; // 現在のターゲットポイント
     private bool isMoving = false; // NPCが移動中かどうか
     public Transform destination;
+    public GameObject targetObject;
 
     void Start()
     {
@@ -29,6 +31,16 @@ public class NewNPCManager : MonoBehaviour
         if (!isMoving && points.Length > 0)
         {
             StartCoroutine(MoveToTargetWithDelay());
+        }
+
+        if (targetObject != null && targetObject.activeInHierarchy)
+        {
+            agent.SetDestination(destination.position);
+            Debug.Log("NPCがプレイヤーの位置に向かっています");
+        }
+        else
+        {
+            Debug.Log("タスクが未完了のため、NPCは待機中");
         }
     }
 
