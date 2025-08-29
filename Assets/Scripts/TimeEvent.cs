@@ -72,6 +72,7 @@ public class TimeEvent : ScriptableObject
     public void AddCleanTask()
     {
         GameManager.instance.taskManager.AddTask(Task.cleaning);
+        AudioManager.instance.WarningSE();
     }
 
     public void StopRandomSpawn()
