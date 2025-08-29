@@ -38,9 +38,15 @@ public class Taskcamera : MonoBehaviour
             rejistercamera.GetComponent<Camera>().enabled = true;
             UiArrow.enabled = false;
         }
-        else
-        {
-        }
+        
+        
+    }
+
+    public void Rejistercamera()
+    {
+        maincamera.GetComponent<Camera>().enabled = true;
+        rejistercamera.GetComponent<Camera>().enabled = false;
+        UiArrow.enabled = true;
     }
 
     public void OnCameraInvoke()
@@ -52,8 +58,6 @@ public class Taskcamera : MonoBehaviour
     {
         maincamera.GetComponent<Camera>().enabled = true;
         displaycamera.GetComponent<Camera>().enabled = false;
-        rejistercamera.GetComponent<Camera>().enabled = false;
-
         UiArrow.enabled = true;
     }
 }

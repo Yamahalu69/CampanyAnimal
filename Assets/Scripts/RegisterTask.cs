@@ -73,6 +73,8 @@ public class RegisterTask : MonoBehaviour
 
     private int arrowRemain;
 
+    [SerializeField] Taskcamera taskcamera;
+
     [SerializeField] Player player;
 
     void Start()
@@ -120,6 +122,7 @@ public class RegisterTask : MonoBehaviour
                     player.rsencer = false;
                     player.pl = true;
                     player.CompleateTask();
+                    taskcamera.Rejistercamera();
                 }
 
                 //ï\é¶çXêV

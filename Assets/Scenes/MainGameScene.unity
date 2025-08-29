@@ -2230,6 +2230,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3683006591021560371, guid: 6ece8a266f5d4db4a9983b2afab0ad98, type: 3}
   m_PrefabInstance: {fileID: 250555280}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &673789939 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3142870754632568779, guid: 6ece8a266f5d4db4a9983b2afab0ad98, type: 3}
+  m_PrefabInstance: {fileID: 250555280}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673789938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e43138ac9b75d9441a0bfdf283b44339, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &707128003
 GameObject:
   m_ObjectHideFlags: 0
@@ -2917,7 +2928,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 290237049548146142, guid: 9f0e8ebab48db2a4fbd43f7968d21861, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1660235562}
   m_SourcePrefab: {fileID: 100100000, guid: 9f0e8ebab48db2a4fbd43f7968d21861, type: 3}
 --- !u!1 &846596711
 GameObject:
@@ -3414,6 +3428,7 @@ MonoBehaviour:
   displaytask: {fileID: 673789938}
   rejistertask: {fileID: 2032302529}
   UiArrow: {fileID: 1146118591}
+  task: {fileID: 673789939}
 --- !u!4 &1023430151
 Transform:
   m_ObjectHideFlags: 0
@@ -5364,6 +5379,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 165330531}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1660235557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 290237049548146142, guid: 9f0e8ebab48db2a4fbd43f7968d21861, type: 3}
+  m_PrefabInstance: {fileID: 828018656}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1660235562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660235557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6adadb6ea9d6cfa4dba219a3cc1f0870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poteti:
+  - {fileID: 2017623474}
+  - {fileID: 0}
+  - {fileID: 0}
+  task: {fileID: 673789939}
+  taskcamera: {fileID: 1023430150}
 --- !u!1 &1672754857
 GameObject:
   m_ObjectHideFlags: 0
@@ -6451,6 +6489,11 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &2017623474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6071171428943377141, guid: 9f0e8ebab48db2a4fbd43f7968d21861, type: 3}
+  m_PrefabInstance: {fileID: 828018656}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2032302527
 GameObject:
   m_ObjectHideFlags: 0

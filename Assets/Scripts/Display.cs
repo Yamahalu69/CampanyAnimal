@@ -98,9 +98,15 @@ public class Display : MonoBehaviour
     }
     void Delay()
     {
+        
         prayer.CompleateTask();
         prayer.dsencer = false;
         prayer.pl = true; 
+    }
+
+    void EnterDelay()
+    {
+        isInputLocked = true;
     }
     public void Reset()
     {
