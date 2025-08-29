@@ -807,6 +807,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 14101758519816808, guid: 6ece8a266f5d4db4a9983b2afab0ad98, type: 3}
+      propertyPath: m_Color.a
+      value: 0.69411767
+      objectReference: {fileID: 0}
+    - target: {fileID: 14101758519816808, guid: 6ece8a266f5d4db4a9983b2afab0ad98, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8910288
+      objectReference: {fileID: 0}
+    - target: {fileID: 14101758519816808, guid: 6ece8a266f5d4db4a9983b2afab0ad98, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8910288
+      objectReference: {fileID: 0}
+    - target: {fileID: 14101758519816808, guid: 6ece8a266f5d4db4a9983b2afab0ad98, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9169811
+      objectReference: {fileID: 0}
     - target: {fileID: 339004512037958807, guid: 6ece8a266f5d4db4a9983b2afab0ad98, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 256
@@ -830,6 +846,10 @@ PrefabInstance:
     - target: {fileID: 1256232448011537038, guid: 6ece8a266f5d4db4a9983b2afab0ad98, type: 3}
       propertyPath: m_ReferenceResolution.y
       value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 2942591001871466339, guid: 6ece8a266f5d4db4a9983b2afab0ad98, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3142870754632568779, guid: 6ece8a266f5d4db4a9983b2afab0ad98, type: 3}
       propertyPath: prayer
@@ -3240,6 +3260,7 @@ MonoBehaviour:
   rejistercamera: {fileID: 2071667416}
   displaytask: {fileID: 673789938}
   rejistertask: {fileID: 2032302529}
+  UiArrow: {fileID: 1146118591}
 --- !u!4 &1023430151
 Transform:
   m_ObjectHideFlags: 0
@@ -6838,7 +6859,7 @@ PrefabInstance:
     - target: {fileID: 3084685767105145283, guid: 2c12991c8a8c6d3418f4796a30796d1b, type: 3}
       propertyPath: maincamera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 519420031}
     - target: {fileID: 7205623580117231803, guid: 2c12991c8a8c6d3418f4796a30796d1b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6918,6 +6939,10 @@ PrefabInstance:
     - target: {fileID: 7205623580117231803, guid: 2c12991c8a8c6d3418f4796a30796d1b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8002007423752126256, guid: 2c12991c8a8c6d3418f4796a30796d1b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8608460551426966556, guid: 2c12991c8a8c6d3418f4796a30796d1b, type: 3}
       propertyPath: m_Name
