@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PressToRiseAndFallBar : MonoBehaviour
+public class Display : MonoBehaviour
 {
     [SerializeField] private Player prayer;
 
@@ -25,6 +25,8 @@ public class PressToRiseAndFallBar : MonoBehaviour
     private bool isInputLocked = false;
     public bool crear = false;
 
+    [SerializeField,Header("非表示までの時間")] private float direy = 10f;
+    private float timer = 0f;
     void Start()
     {
         if (bar != null)
@@ -51,7 +53,7 @@ public class PressToRiseAndFallBar : MonoBehaviour
         if (Input.GetKey(KeyCode.Return) && !isFalling && !isInputLocked)
         {
             currentHeight += riseSpeed * Time.deltaTime;
-
+            timer += Time.deltaTime;
             // 上限に達したら下降開始 & 入力ロック
             if (currentHeight >= maxHeight)
             {
@@ -67,12 +69,12 @@ public class PressToRiseAndFallBar : MonoBehaviour
             if (currentHeight >= goalMin && currentHeight <= goalMax)
             {
                 Reset();
-
                 targetToHide.SetActive(false);
                 prayer.CompleateTask();
                 prayer.dsencer = false;
                 prayer.pl = true;
                 crear = true;
+                
             }
             else
             {

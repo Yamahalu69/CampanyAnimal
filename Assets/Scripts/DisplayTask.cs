@@ -6,7 +6,8 @@ public class DisplayTask : MonoBehaviour
     [SerializeField] private GameObject[] poteti;
     private int taskcount = 0;
     [SerializeField] private GameObject Display;
-    private Display task;
+    [SerializeField] private Display task;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,13 +24,12 @@ public class DisplayTask : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if( )
-        //{
-        //    poteti[taskcount].SetActive(true);
-        //}
-        //else
-        //{
-        //    taskcount++;
-        //}
+        if (task.crear)
+        {
+            poteti[taskcount].SetActive(true);
+            taskcount++;
+            task.crear = false;
+        }
+        
     }
 }

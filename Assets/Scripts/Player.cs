@@ -50,8 +50,8 @@ public class Player : MonoBehaviour
         //ÉQÅ[ÉÄèIóπ
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            AudioManager.instance.TitleBGM();
             SceneManager.LoadScene("TitleScene");
+            AudioManager.instance.TitleBGM();
         }
         
     }
