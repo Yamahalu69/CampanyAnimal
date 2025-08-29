@@ -23,6 +23,7 @@ public class PressToRiseAndFallBar : MonoBehaviour
     private float currentHeight = 0f;
     private bool isFalling = false;
     private bool isInputLocked = false;
+    public bool crear = false;
 
     void Start()
     {
@@ -71,6 +72,7 @@ public class PressToRiseAndFallBar : MonoBehaviour
                 prayer.CompleateTask();
                 prayer.dsencer = false;
                 prayer.pl = true;
+                crear = true;
             }
             else
             {
