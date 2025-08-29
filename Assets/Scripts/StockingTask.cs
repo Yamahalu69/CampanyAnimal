@@ -77,6 +77,7 @@ public class StockingTask : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return) && isPlayable)
         {
+            AudioManager.instance.UIClick();
             //ƒo[‚ªd‚È‚Á‚Ä‚¢‚é‚©”»’è
             float upLimit = target.position.y + target.rect.height / 2f;
             float downLimit = target.position.y - target.rect.height / 2f;

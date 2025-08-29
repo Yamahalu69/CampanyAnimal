@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
         //ゲーム終了
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            AudioManager.instance.TitleBGM();
             SceneManager.LoadScene("TitleScene");
         }
         
@@ -151,6 +152,7 @@ public class Player : MonoBehaviour
         {
             cleantask.SetActive(true);
             pl = false;
+            AudioManager.instance.UIClick();
         }
         //タスク中断
         else if (Input.GetKeyDown(KeyCode.Space) && csencer == true)
@@ -169,6 +171,7 @@ public class Player : MonoBehaviour
         {
             displaytask.SetActive(true);
             pl = false;
+            AudioManager.instance.UIClick();
         }
 
         //タスク中断
@@ -186,9 +189,10 @@ public class Player : MonoBehaviour
         {
             registerTask.StartTask();
             pl = false;
+            AudioManager.instance.UIClick();
         }
 
-        if(Input.GetKeyDown(KeyCode.Space)&&rsencer==true)
+        if (Input.GetKeyDown(KeyCode.Space)&&rsencer==true)
         {
             pl= true;
         }
@@ -201,9 +205,10 @@ public class Player : MonoBehaviour
         {
             stockingTask.StartTask();
             pl = false;
+            AudioManager.instance.UIClick();
         }
 
-        if(Input.GetKeyDown(KeyCode.Space)&&ssencer==true)
+        if (Input.GetKeyDown(KeyCode.Space)&&ssencer==true)
         {
             pl= true;
         }
