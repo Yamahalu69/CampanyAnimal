@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     private GameObject currentTask;
     private Vector3 vector = new Vector3(0, 0, 0);
 
+    private Vector3 vec = Vector3.zero;
+    [SerializeField] private float rotation = 5f;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -47,6 +50,7 @@ public class Player : MonoBehaviour
         //ゲーム終了
         if(Input.GetKeyDown(KeyCode.Escape))
         {
+            AudioManager.instance.TitleBGM();
             SceneManager.LoadScene("TitleScene");
         }
         
@@ -129,6 +133,13 @@ public class Player : MonoBehaviour
             }
         }
 
+        if(vec != Vector3.zero)
+        {
+            Vector3 movedirection = new Vector3(vector.x,0f,vector.z);
+
+            Quaternion targetrotation = Quaternion.LookRotation(movedirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation,targetrotation,rotation*Time.deltaTime);
+        }
         
     }
 
@@ -141,6 +152,7 @@ public class Player : MonoBehaviour
         {
             cleantask.SetActive(true);
             pl = false;
+            AudioManager.instance.UIClick();
         }
         //タスク中断
         else if (Input.GetKeyDown(KeyCode.Space) && csencer == true)
@@ -159,6 +171,7 @@ public class Player : MonoBehaviour
         {
             displaytask.SetActive(true);
             pl = false;
+            AudioManager.instance.UIClick();
         }
 
         //タスク中断
@@ -176,9 +189,10 @@ public class Player : MonoBehaviour
         {
             registerTask.StartTask();
             pl = false;
+            AudioManager.instance.UIClick();
         }
 
-        if(Input.GetKeyDown(KeyCode.Space)&&rsencer==true)
+        if (Input.GetKeyDown(KeyCode.Space)&&rsencer==true)
         {
             pl= true;
         }
@@ -191,9 +205,10 @@ public class Player : MonoBehaviour
         {
             stockingTask.StartTask();
             pl = false;
+            AudioManager.instance.UIClick();
         }
 
-        if(Input.GetKeyDown(KeyCode.Space)&&ssencer==true)
+        if (Input.GetKeyDown(KeyCode.Space)&&ssencer==true)
         {
             pl= true;
         }

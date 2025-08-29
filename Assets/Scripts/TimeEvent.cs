@@ -54,6 +54,8 @@ public class TimeEvent : ScriptableObject
     {
         GameManager.instance.taskManager.AddTask(Task.register);
         //NPC‚Æ˜A“®
+        //GameObject.Find("NPC").GetComponent<NPCCommand>().CommandNPC();
+        AudioManager.instance.WarningSE();
     }
 
     public void AddStockTask()
@@ -64,11 +66,13 @@ public class TimeEvent : ScriptableObject
     public void AddDisplayTask()
     {
         GameManager.instance.taskManager.AddTask(Task.display);
+        AudioManager.instance.WarningSE();
     }
 
     public void AddCleanTask()
     {
         GameManager.instance.taskManager.AddTask(Task.cleaning);
+        AudioManager.instance.WarningSE();
     }
 
     public void StopRandomSpawn()

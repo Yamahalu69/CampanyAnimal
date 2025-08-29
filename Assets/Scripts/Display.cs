@@ -23,7 +23,7 @@ public class PressToRiseAndFallBar : MonoBehaviour
     private float currentHeight = 0f;
     private bool isFalling = false;
     private bool isInputLocked = false;
-    private bool hasHidden = false;
+    public bool crear = false;
 
     void Start()
     {
@@ -69,10 +69,10 @@ public class PressToRiseAndFallBar : MonoBehaviour
                 Reset();
 
                 targetToHide.SetActive(false);
-                hasHidden = true;
                 prayer.CompleateTask();
                 prayer.dsencer = false;
                 prayer.pl = true;
+                crear = true;
             }
             else
             {

@@ -12,6 +12,7 @@ public class Title : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))//特定のキーを入れる　そのキーを入力するとシーンが移動する
         {
+            AudioManager.instance.TitleBGM();
             SceneManager.LoadScene("TitleScene");//シーン名を入れる
         }
     }
