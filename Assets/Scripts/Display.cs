@@ -25,7 +25,7 @@ public class Display : MonoBehaviour
     private bool isInputLocked = false;
     public bool crear = false;
 
-    [SerializeField,Header("非表示までの時間")] private float direy = 10f;
+    
     private float timer = 0f;
     void Start()
     {
@@ -53,7 +53,6 @@ public class Display : MonoBehaviour
         if (Input.GetKey(KeyCode.Return) && !isFalling && !isInputLocked)
         {
             currentHeight += riseSpeed * Time.deltaTime;
-            timer += Time.deltaTime;
             // 上限に達したら下降開始 & 入力ロック
             if (currentHeight >= maxHeight)
             {
@@ -70,11 +69,9 @@ public class Display : MonoBehaviour
             {
                 Reset();
                 targetToHide.SetActive(false);
-                prayer.CompleateTask();
-                prayer.dsencer = false;
-                prayer.pl = true;
                 crear = true;
-                
+                Invoke("Delay", 3f);
+
             }
             else
             {
@@ -82,7 +79,8 @@ public class Display : MonoBehaviour
                 isInputLocked = true;
             }
         }
-
+        
+       
         // === 下降処理 ===
         if (isFalling)
         {
@@ -98,7 +96,12 @@ public class Display : MonoBehaviour
         // === バー位置の更新 ===
         bar.rectTransform.anchoredPosition = new Vector2(initialPos.x, initialPos.y + currentHeight);
     }
-
+    void Delay()
+    {
+        prayer.CompleateTask();
+        prayer.dsencer = false;
+        prayer.pl = true; 
+    }
     public void Reset()
     {
         currentHeight = 0f;
