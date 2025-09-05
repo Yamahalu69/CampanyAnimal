@@ -4,10 +4,10 @@ using UnityEngine.UI;
 public class DisplayTask : MonoBehaviour
 {
     [SerializeField] private GameObject[] poteti;
-    //[SerializeField] private GameObject[] potetiefect;
+    [SerializeField] private GameObject[] potetiefect;
 
-    public Transform[] target;
-    private LineRenderer line;
+    //public Transform[] target;
+    //private LineRenderer line;
 
     private int taskcount = 0;
 
@@ -22,18 +22,12 @@ public class DisplayTask : MonoBehaviour
         {
             gobj.SetActive(false);
         }
-        //foreach (var pe in potetiefect)
-        //{
-        //    pe.SetActive(false);
-        //}
 
-        line = GetComponent<LineRenderer>();
-        line.positionCount = 5;
-        line.loop = false;
-        line.useWorldSpace = true;
-        line.widthMultiplier = 0.05f;
+        foreach (var pe in potetiefect)
+        {
+            pe.SetActive(false);
+        }
 
-        UpdateOutline();
     }
    
 
@@ -41,10 +35,11 @@ public class DisplayTask : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        potetiefect[taskcount].SetActive(true);
         if (task.crear)
         {
             poteti[taskcount].SetActive(true);
-            //potetiefect[taskcount].SetActive(true);
+            potetiefect[taskcount].SetActive(false);
             taskcount++;
             task.crear = false;
             taskcamera.OnCameraInvoke();
@@ -52,17 +47,5 @@ public class DisplayTask : MonoBehaviour
         
     }
 
-    void UpdateOutline()
-    {
-        Bounds bounds = target[taskcount].GetComponent<Renderer>().bounds;
-
-        Vector3[] points = new Vector3[5];
-        points[0] = new Vector3(bounds.min.x, bounds.min.y, bounds.min.z);
-        points[1] = new Vector3(bounds.max.x, bounds.min.y, bounds.min.z);
-        points[2] = new Vector3(bounds.max.x, bounds.max.y, bounds.min.z);
-        points[3] = new Vector3(bounds.min.x, bounds.max.y, bounds.min.z);
-        points[4] = points[0];
-
-        line.SetPositions(points);
-    }
+    
 }
