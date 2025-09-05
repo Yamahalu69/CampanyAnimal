@@ -7212,7 +7212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gageManager: {fileID: 494568163}
-  newNPCManager: {fileID: 0}
+  newNPCManager: {fileID: 1178034548}
   stockColor: {r: 0.3137255, g: 0.627451, b: 0.78431374, a: 1}
   displayColor: {r: 0.98039216, g: 0.74509805, b: 0, a: 1}
   cleanColor: {r: 0.78431374, g: 0.47058824, b: 0.98039216, a: 1}
@@ -7223,6 +7223,7 @@ MonoBehaviour:
   registerTaskGuidePrefab: {fileID: 7011425083451985979, guid: e54514c3b2f3d804985134e9cd0a1944, type: 3}
   remainTaskText: {fileID: 8781663980361377302, guid: 35a5e4b3e013108439c6bde6d7212355, type: 3}
   displayTaskCount: 2
+  randomDipsTaskCount: 5
   remainTaskTextPT: {fileID: 121435368}
   dispGuidePos:
   - {fileID: 929853795}
@@ -7570,9 +7571,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   taskManager: {fileID: 2032302530}
   spawnTask: 1
-  randomSpawnMin: 0
+  randomSpawnMin: -10
   randomSpawnMax: 10
-  events: []
+  events:
+  - {fileID: 11400000, guid: 847477b4c7b1b394a9efcf967354950f, type: 2}
+  - {fileID: 11400000, guid: c8926c9772dbe6b4ea97c7de6f1f6567, type: 2}
+  - {fileID: 11400000, guid: fd4ab0f14fb24164aa1b0b0184c0791a, type: 2}
+  - {fileID: 11400000, guid: 2876e7b4067739643b59f3f0edc891a2, type: 2}
+  - {fileID: 11400000, guid: 4f2baa5140f2319419a913e4c320d587, type: 2}
+  - {fileID: 11400000, guid: 684541943797421469c91ea94de8d830, type: 2}
+  - {fileID: 11400000, guid: 449bd67ef0e980a43b73c7647063d9c7, type: 2}
+  - {fileID: 11400000, guid: 96215e62d382bd345940e839868cbac2, type: 2}
+  - {fileID: 11400000, guid: 6eeab2b594166bd4e828f1eeb030e8aa, type: 2}
 --- !u!4 &2130536520
 Transform:
   m_ObjectHideFlags: 0
