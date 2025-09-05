@@ -43,13 +43,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (timeCount) timer += Time.deltaTime;
-        //Debug.Log(timer);
         foreach (var e in events)
         {
-            Debug.Log(e.triggered);
             if ((!e.triggered) && timer >= e.triggerTime)
             {
-                Debug.Log(e.actionEvent);
                 e.ActionEvent();
             }
         }
@@ -62,6 +59,10 @@ public class GameManager : MonoBehaviour
             if (spawnCount < spawnTimeList.Count - 1)
             {
                 spawnCount++;
+            }
+            else if (spawnCount == spawnTimeList.Count - 1)
+            {
+                spawnTimeList.Clear();
             }
         }
     }
