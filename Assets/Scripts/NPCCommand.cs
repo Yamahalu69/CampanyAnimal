@@ -7,6 +7,7 @@ public class NPCCommand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // "F"キーを押すと、NPCを指定した座標に移動させる
         if (Input.GetKeyDown(KeyCode.F))
         {
