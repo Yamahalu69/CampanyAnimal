@@ -2,6 +2,8 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
@@ -22,7 +24,8 @@ public class Player : MonoBehaviour
     private Vector3 vec = Vector3.zero;
     [SerializeField] private float rotation = 5f;
 
-
+    private bool walkinput = false;
+    private Animator anime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -64,6 +67,8 @@ public class Player : MonoBehaviour
             vector *= sp;
             transform.position += vector;
         }
+
+        anime.SetBool("Walk", walkinput);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -118,6 +123,7 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.W))
             {
                 vector.z = 1.0f;
+                walkinput = true;
             }
             else if (Input.GetKey(KeyCode.S))
             {
@@ -132,6 +138,7 @@ public class Player : MonoBehaviour
                 vector.x = -1.0f;
             }
         }
+
 
         if(vec != Vector3.zero)
         {

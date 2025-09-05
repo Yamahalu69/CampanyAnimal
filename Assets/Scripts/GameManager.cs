@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     public float randomSpawnMin = 0;
     public float randomSpawnMax = 10;
 
+    List<float> spawnTimeList = new List<float>();
+    private int spawnCount = 0;
+
     [SerializeField]
     private List<TimeEvent> events = new List<TimeEvent>();
 
@@ -50,11 +53,20 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (spawnTriggerTime <= timer && spawnTask)
+        //ランダムタスクスポーン
+        if (spawnTimeList[spawnCount] <= timer && spawnTask)
         {
             taskManager.AddTask(Task.display);
-            spawnTriggerTime += Random.Range(randomSpawnMin, randomSpawnMax);
+            if (spawnCount < spawnTimeList.Count - 1)
+            {
+                spawnCount++;
+            }
         }
+        //if (spawnTriggerTime <= timer && spawnTask)
+        //{
+        //    taskManager.AddTask(Task.display);
+        //    spawnTriggerTime += Random.Range(randomSpawnMin, randomSpawnMax);
+        //}
     }
 
     void ActiveSceneChanged(Scene thisScene, Scene nextScene)
@@ -77,6 +89,7 @@ public class GameManager : MonoBehaviour
         timer = 0;
         spawnTask = true;
         spawnTriggerTime = 0;
+        MakeSpawnTimes();
     }
 
     public void JudgeGameClear()
@@ -88,6 +101,19 @@ public class GameManager : MonoBehaviour
         else
         {
             GameOver();
+        }
+    }
+
+    private void MakeSpawnTimes()
+    {
+        spawnTimeList.Clear();
+        float stopTime = events.FirstOrDefault(e => e.actionEvent == TimeEvent.EventList.StopRandomSpawn)?.triggerTime ?? 0f;
+        float maxTime = stopTime - randomSpawnMax;
+        float multiplyFactor = maxTime / taskManager.randomDipsTaskCount;
+
+        for (int i = 0; i < taskManager.randomDipsTaskCount; i++)
+        {
+            spawnTimeList.Add(multiplyFactor * (i + 1) + Random.Range(randomSpawnMin, randomSpawnMax));
         }
     }
 

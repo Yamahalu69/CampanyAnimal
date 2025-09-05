@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
     private AudioSource bgmSource, seSource;
 
     [SerializeField]
-    private AudioClip title, playing, gameover, gameclear, uiclick, warning;
+    private AudioClip title, playing, gameover, gameclear, uiclick, warning, walking;
 
     void Awake()
     {
@@ -50,6 +50,11 @@ public class AudioManager : MonoBehaviour
     public void WarningSE()
     {
         seSource.PlayOneShot(warning);
+    }
+
+    public void WalkingSE()
+    {
+        seSource.PlayOneShot(walking);
     }
 
     public void UIClick()
