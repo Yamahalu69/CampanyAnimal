@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CustomerRaid1
   m_EditorClassIdentifier: 
   triggerTime: 35
-  triggered: 1
+  triggered: 0
   actionEvent: 0
