@@ -26,7 +26,6 @@ public class Display : MonoBehaviour
     public bool crear = false;
 
     
-    private float timer = 0f;
     void Start()
     {
         if (bar != null)
@@ -70,7 +69,7 @@ public class Display : MonoBehaviour
                 Reset();
                 targetToHide.SetActive(false);
                 crear = true;
-                Invoke("Delay", 3f);
+                Invoke("Delay", 1.5f);
 
             }
             else

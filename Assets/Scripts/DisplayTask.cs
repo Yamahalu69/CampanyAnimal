@@ -5,14 +5,13 @@ public class DisplayTask : MonoBehaviour
 {
     [SerializeField] private GameObject[] poteti;
     private int taskcount = 0;
-    //[SerializeField] private GameObject Display;
+
     [SerializeField] private Display task;
 
     [SerializeField] private Taskcamera taskcamera;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Display.SetActive(false);
 
         foreach (var gobj in poteti)
         {
