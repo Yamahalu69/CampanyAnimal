@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec54fb2d72b0ec4ebf5779edc197377, type: 3}
   m_Name: CustomerRaid3
   m_EditorClassIdentifier: 
-  triggerTime: 150
+  triggerTime: 200
   triggered: 0
   actionEvent: 0
