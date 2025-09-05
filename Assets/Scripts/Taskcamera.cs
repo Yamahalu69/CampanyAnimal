@@ -51,7 +51,7 @@ public class Taskcamera : MonoBehaviour
 
     public void OnCameraInvoke()
     {
-        Invoke("OnCamera", 3f);
+        Invoke("OnCamera", 1.5f);
     }
 
     void OnCamera()

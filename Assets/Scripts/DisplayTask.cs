@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class DisplayTask : MonoBehaviour
 {
     [SerializeField] private GameObject[] poteti;
+    [SerializeField] private GameObject[] potetiefect;
     private int taskcount = 0;
 
     [SerializeField] private Display task;
@@ -17,6 +18,10 @@ public class DisplayTask : MonoBehaviour
         {
             gobj.SetActive(false);
         }
+        foreach (var pe in potetiefect)
+        {
+            pe.SetActive(false);
+        }
     }
    
 
@@ -27,6 +32,7 @@ public class DisplayTask : MonoBehaviour
         if (task.crear)
         {
             poteti[taskcount].SetActive(true);
+            potetiefect[taskcount].SetActive(true);
             taskcount++;
             task.crear = false;
             taskcamera.OnCameraInvoke();
