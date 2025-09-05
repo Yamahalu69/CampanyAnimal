@@ -12,8 +12,7 @@ public class GameManager : MonoBehaviour
     private float timer;
     private bool timeCount =false;
 
-    public bool spawnTask = true;
-    private float spawnTriggerTime = 0;
+    public bool spawnTask = false;
     public float randomSpawnMin = 0;
     public float randomSpawnMax = 10;
 
@@ -38,7 +37,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        GameStart();
         SceneManager.activeSceneChanged += ActiveSceneChanged;
     }
 
@@ -54,6 +52,7 @@ public class GameManager : MonoBehaviour
         }
 
         //ランダムタスクスポーン
+        if (spawnTimeList.Count == 0) return;
         if (spawnTimeList[spawnCount] <= timer && spawnTask)
         {
             taskManager.AddTask(Task.display);
@@ -62,11 +61,6 @@ public class GameManager : MonoBehaviour
                 spawnCount++;
             }
         }
-        //if (spawnTriggerTime <= timer && spawnTask)
-        //{
-        //    taskManager.AddTask(Task.display);
-        //    spawnTriggerTime += Random.Range(randomSpawnMin, randomSpawnMax);
-        //}
     }
 
     void ActiveSceneChanged(Scene thisScene, Scene nextScene)
@@ -88,7 +82,6 @@ public class GameManager : MonoBehaviour
         taskManager.Init();
         timer = 0;
         spawnTask = true;
-        spawnTriggerTime = 0;
         MakeSpawnTimes();
     }
 

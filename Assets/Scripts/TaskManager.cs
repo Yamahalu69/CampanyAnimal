@@ -95,10 +95,6 @@ public class TaskManager : MonoBehaviour
         {
             AddTask(Task.display);
         }
-
-        AddTask(Task.cleaning);
-        AddTask(Task.register);
-        AddTask(Task.stocking);
     }
 
     public List<GameObject> TaskGOs()

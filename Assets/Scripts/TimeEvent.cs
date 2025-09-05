@@ -16,15 +16,15 @@ public class TimeEvent : ScriptableObject
     /// </summary>
     /// <param name="triggerT">イベント発生時間(経過時間)</param>
     /// <param name="event">発生させるイベント</param>
-    public TimeEvent(float triggerT, EventList @event)
-    {
-        triggerTime = triggerT;
-        triggered = false;
-        actionEvent = @event;
-    }
+    //public TimeEvent(float triggerT, EventList @event)
+    //{
+    //    triggerTime = triggerT;
+    //    triggered = false;
+    //    actionEvent = @event;
+    //}
     public float triggerTime;
     [HideInInspector]
-    public bool triggered;
+    public bool triggered = false;
     public EventList actionEvent;
 
     public void ActionEvent()

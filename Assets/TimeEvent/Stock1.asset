@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec54fb2d72b0ec4ebf5779edc197377, type: 3}
   m_Name: Stock1
   m_EditorClassIdentifier: 
-  triggerTime: 60
-  triggered: 0
+  triggerTime: 10
+  triggered: 1
   actionEvent: 1

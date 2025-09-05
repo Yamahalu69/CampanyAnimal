@@ -1237,6 +1237,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212755770}
   m_CullTransparentMesh: 1
+--- !u!1 &1428007822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1428007824}
+  - component: {fileID: 1428007823}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1428007823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428007822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a4eabd1a12ff046be40d97d0901ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taskManager: {fileID: 0}
+  spawnTask: 1
+  randomSpawnMin: -10
+  randomSpawnMax: 10
+  events:
+  - {fileID: 11400000, guid: 847477b4c7b1b394a9efcf967354950f, type: 2}
+  - {fileID: 11400000, guid: c8926c9772dbe6b4ea97c7de6f1f6567, type: 2}
+  - {fileID: 11400000, guid: fd4ab0f14fb24164aa1b0b0184c0791a, type: 2}
+  - {fileID: 11400000, guid: 2876e7b4067739643b59f3f0edc891a2, type: 2}
+  - {fileID: 11400000, guid: 4f2baa5140f2319419a913e4c320d587, type: 2}
+  - {fileID: 11400000, guid: 684541943797421469c91ea94de8d830, type: 2}
+  - {fileID: 11400000, guid: 449bd67ef0e980a43b73c7647063d9c7, type: 2}
+  - {fileID: 11400000, guid: 96215e62d382bd345940e839868cbac2, type: 2}
+  - {fileID: 11400000, guid: 6eeab2b594166bd4e828f1eeb030e8aa, type: 2}
+--- !u!4 &1428007824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428007822}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1590501372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1606,3 +1664,4 @@ SceneRoots:
   - {fileID: 935648895}
   - {fileID: 425202616}
   - {fileID: 1148045313}
+  - {fileID: 1428007824}
