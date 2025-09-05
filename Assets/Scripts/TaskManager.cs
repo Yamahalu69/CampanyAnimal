@@ -42,6 +42,9 @@ public class TaskManager : MonoBehaviour
     [Header("初期の前陳タスクの数")]
     public int displayTaskCount;
 
+    [Header("ランダムで発生する前陳タスクの総数")]
+    public int randomDipsTaskCount;
+
     [Header("残りタスクテキスト親transform")]
     public Transform remainTaskTextPT;
 
