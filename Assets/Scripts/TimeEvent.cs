@@ -11,17 +11,6 @@ public class TimeEvent : ScriptableObject
         AddCleanTask,
         StopRandomSpawn
     }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="triggerT">イベント発生時間(経過時間)</param>
-    /// <param name="event">発生させるイベント</param>
-    //public TimeEvent(float triggerT, EventList @event)
-    //{
-    //    triggerTime = triggerT;
-    //    triggered = false;
-    //    actionEvent = @event;
-    //}
     public float triggerTime;
     [HideInInspector]
     public bool triggered = false;

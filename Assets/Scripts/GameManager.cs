@@ -43,10 +43,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (timeCount) timer += Time.deltaTime;
+        if (timer >= 10) Debug.Log(timer);
         foreach (var e in events)
         {
-            if (!e.triggered && timer >= e.triggerTime)
+            if ((!e.triggered) && timer >= e.triggerTime)
             {
+                Debug.Log("e");
                 e.ActionEvent();
             }
         }
