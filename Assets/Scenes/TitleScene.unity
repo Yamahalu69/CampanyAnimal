@@ -1140,6 +1140,7 @@ MonoBehaviour:
   gameclear: {fileID: 8300000, guid: 7822e6fb9ba2c514797973e39c6bba1f, type: 3}
   uiclick: {fileID: 8300000, guid: e758066587730324aa3cdf71938a1cdf, type: 3}
   warning: {fileID: 8300000, guid: 8db7a1bfaabc2ca40b9d2f7b1c2735e1, type: 3}
+  walking: {fileID: 8300000, guid: aab1558cc82a05046af076165b6bf3c2, type: 3}
 --- !u!4 &1148045313
 Transform:
   m_ObjectHideFlags: 0
