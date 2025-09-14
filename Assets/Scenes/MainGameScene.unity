@@ -2334,8 +2334,12 @@ PrefabInstance:
       objectReference: {fileID: 880335445}
     - target: {fileID: 5779541660098500299, guid: 8e11c112173e5164791a487939b4843e, type: 3}
       propertyPath: maxcount
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 5779541660098500299, guid: 8e11c112173e5164791a487939b4843e, type: 3}
+      propertyPath: enterText
+      value: 
+      objectReference: {fileID: 1810203196}
     - target: {fileID: 5779541660098500299, guid: 8e11c112173e5164791a487939b4843e, type: 3}
       propertyPath: fallspeed
       value: 5

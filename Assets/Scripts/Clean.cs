@@ -1,79 +1,106 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class Clean : MonoBehaviour
 {
+    [Header("Player Script")]
     [SerializeField] private Player prayer;
-    [SerializeField] private float fallspeed;
+
+    [Header("UI")]
     [SerializeField] private Slider bar;
     [SerializeField] private GameObject cleantask;
-    [SerializeField] private Text Enter;
-    [SerializeField, Header("最大入力回数")] private int maxcount;
-     private int count;//現在の入力回数
+    [SerializeField] private Text enterText;
 
-    private bool hascompleted = false;
+    [Header("Input Settings")]
+    [SerializeField, Tooltip("最大入力回数")] private int maxCount = 10;
+    private int currentCount = 0;
 
-    [SerializeField, Header("操作可能までの遅延秒数")] private float delay = 0.5f;
+    private bool taskCompleted = false;
 
-    private float timer = 0f;
-    private bool inputenabled = false;
+    // 前フレームのcleantaskの表示状態を記録
+    private bool previousCleantaskActive = true;
+
     private void Start()
     {
-        Enter.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-        if (bar != null)
-        {
-            bar.value = 0f;
-        }
-        if ((cleantask !=null))
-        {
-            cleantask.SetActive(true);
-        }
-        timer = 0f;
-        inputenabled = false;
+        ResetProgress();
+        cleantask?.SetActive(true);
+        previousCleantaskActive = cleantask?.activeSelf ?? false;
     }
 
     private void Update()
     {
-        if (hascompleted) return;
-
-        if(!inputenabled)
+        // Enterキーで進行
+        if (!taskCompleted && Input.GetKeyDown(KeyCode.Return))
         {
-            timer += Time.deltaTime;
-            if(timer>=delay)
+            currentCount++;
+            UpdateSlider();
+
+            // 色を変更（押された瞬間）
+            enterText.color = new Color(1f, 0f, 0f, 0.5f);
+
+            if (currentCount >= maxCount)
             {
-                inputenabled = true;
+                CompleteTask();
             }
-            return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        // キーを離したら色を戻す
+        if (Input.GetKeyUp(KeyCode.Return))
         {
-            count++;
-            Enter.color = new Color(255f, 0f, 0f, 0.5f);
+            enterText.color = new Color(0f, 0f, 0f, 1f);
+        }
 
-            float progress = (float)count / maxcount;
+        // Canvas（cleantask）が非表示になった瞬間にリセット
+        if (cleantask != null)
+        {
+            if (previousCleantaskActive && !cleantask.activeSelf)
+            {
+                ResetProgress();
+            }
+
+            previousCleantaskActive = cleantask.activeSelf;
+        }
+    }
+
+    private void UpdateSlider()
+    {
+        if (bar != null && maxCount > 0)
+        {
+            float progress = (float)currentCount / maxCount;
             bar.value = Mathf.Clamp01(progress);
-
-            if (count >= maxcount)
-            {
-                if (cleantask != null)
-                {
-                    cleantask.SetActive(false);
-                    hascompleted = true;
-                    prayer.CompleateTask();
-                    prayer.csencer = false;
-                    prayer.pl = true;
-                }
-            }
         }
-       
-        if(Input.GetKeyUp(KeyCode.Return))
+    }
+
+    private void ResetProgress()
+    {
+        currentCount = 0;
+        taskCompleted = false;
+
+        if (bar != null)
         {
-            Enter.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+            bar.minValue = 0f;
+            bar.maxValue = 1f;
+            bar.value = 0f;
         }
 
-    }   
+        enterText.color = new Color(0f, 0f, 0f, 1f);
+    }
+
+    private void CompleteTask()
+    {
+        taskCompleted = true;
+
+        if (cleantask != null)
+        {
+            cleantask.SetActive(false);
+        }
+
+        if (prayer != null)
+        {
+            prayer.CompleateTask();
+            prayer.csencer = false;
+            prayer.pl = true;
+        }
+    }
 }
