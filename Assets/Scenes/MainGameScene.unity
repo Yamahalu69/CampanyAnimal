@@ -8311,9 +8311,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDebug: 0
   isPlaying: 0
-  task: 3
-  speed: 2
-  stunTime: 3
+  task: 5
+  speed: 8
+  stunTime: 8
   canvas: {fileID: 1359619653}
   sideBarPrefab: {fileID: 4936477668920112901, guid: ee8126b3f6d884b4d9145663206ab340, type: 3}
   offset: {x: 800, y: 0}
@@ -8333,16 +8333,53 @@ MonoBehaviour:
   isDebug: 0
   isPlaying: 0
   arrowLists:
+  - {fileID: 11400000, guid: 5ca15775eac01494a8e33b1a7c37a84e, type: 2}
   - {fileID: 11400000, guid: 5856f9246a022f14ca0c5291a4fdbc9c, type: 2}
+  - {fileID: 11400000, guid: d2b8ba37ae1f0c04489c5f91b217a23c, type: 2}
   - {fileID: 11400000, guid: 5fd9ff789bd73c14cbd1a6d398bab4dc, type: 2}
   clerkTalks:
-  - "\u3042"
-  - "\u3044"
-  - "\u3046"
+  - "152\u5186\u3067\u3059"
+  - "438\u5186\u3067\u3059"
+  - "967\u5186\u3067\u3059"
+  - "284\u5186\u3067\u3059"
+  - "735\u5186\u3067\u3059"
+  - "619\u5186\u3067\u3059"
+  - "503\u5186\u3067\u3059"
+  - "741\u5186\u3067\u3059"
+  - "826\u5186\u3067\u3059"
+  - "159\u5186\u3067\u3059"
+  - "374\u5186\u3067\u3059"
+  - "682\u5186\u3067\u3059"
+  - "945\u5186\u3067\u3059"
+  - "217\u5186\u3067\u3059"
+  - "580\u5186\u3067\u3059"
+  - "693\u5186\u3067\u3059"
+  - "481\u5186\u3067\u3059"
+  - "327\u5186\u3067\u3059"
+  - "864\u5186\u3067\u3059"
+  - "759\u5186\u3067\u3059"
+  - "430\u5186\u3067\u3059"
+  - "196\u5186\u3067\u3059"
+  - "1382\u5186\u3067\u3059"
+  - "1429\u5186\u3067\u3059"
+  - "1307\u5186\u3067\u3059"
   customerTalks:
-  - "\u304B"
-  - "\u304D"
-  - "\u304F"
+  - "\u306F\u3088"
+  - "\u30FB\u30FB\u30FB"
+  - "\u306F\u3044\u306F\u3044"
+  - "\u30FB\u30FB\u30FB"
+  - "\u306F\u3044\u306F\u3044"
+  - "\u30FB\u30FB\u30FB"
+  - "\u30FB\u30FB\u30FB"
+  - "\u30FB\u30FB\u30FB"
+  - "\u30FB\u30FB\u30FB"
+  - "\u30FB\u30FB\u30FB"
+  - "\u30FB\u30FB\u30FB"
+  - "\u30FB\u30FB\u30FB"
+  - "\u306F\u3084\u304F"
+  - "\u30FB\u30FB\u30FB"
+  - "\u306F\u3088"
+  - "\u306F\u3084\u304F"
   talkPrefab: {fileID: 6124455825942217462, guid: 9ab34f057c3e468448332a14d639963f, type: 3}
   clerkTransform: {fileID: 1289916338}
   customerTransform: {fileID: 1613593006}
@@ -8388,7 +8425,7 @@ MonoBehaviour:
   registerTaskGuidePrefab: {fileID: 7011425083451985979, guid: e54514c3b2f3d804985134e9cd0a1944, type: 3}
   remainTaskText: {fileID: 8781663980361377302, guid: 35a5e4b3e013108439c6bde6d7212355, type: 3}
   displayTaskCount: 2
-  randomDipsTaskCount: 5
+  randomDipsTaskCount: 1
   remainTaskTextPT: {fileID: 121435368}
   dispGuidePos:
   - {fileID: 929853795}
@@ -8654,6 +8691,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c8926c9772dbe6b4ea97c7de6f1f6567, type: 2}
   - {fileID: 11400000, guid: fd4ab0f14fb24164aa1b0b0184c0791a, type: 2}
   - {fileID: 11400000, guid: 2876e7b4067739643b59f3f0edc891a2, type: 2}
+  - {fileID: 11400000, guid: 09269120ac26b2140a15951fa5d452ba, type: 2}
+  - {fileID: 11400000, guid: 32f5744671725de4197133d02d2589d5, type: 2}
+  - {fileID: 11400000, guid: b8a803f6f49ac624bb86cbb8526621cb, type: 2}
+  - {fileID: 11400000, guid: 5d503136e36a16d4aa8ad237395a1f66, type: 2}
+  - {fileID: 11400000, guid: b8a803f6f49ac624bb86cbb8526621cb, type: 2}
+  - {fileID: 11400000, guid: efe40db930109084f902cec53b0ad35e, type: 2}
   - {fileID: 11400000, guid: 4f2baa5140f2319419a913e4c320d587, type: 2}
   - {fileID: 11400000, guid: 684541943797421469c91ea94de8d830, type: 2}
   - {fileID: 11400000, guid: 449bd67ef0e980a43b73c7647063d9c7, type: 2}

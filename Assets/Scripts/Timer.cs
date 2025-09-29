@@ -35,7 +35,7 @@ public class Timer : MonoBehaviour
                 DisplayTime(0);
 
                 // ゲームオーバーシーンに遷移
-                SceneManager.LoadScene("GameOverScene");
+                SceneManager.LoadScene("GameClearScene");
             }
         }
     }

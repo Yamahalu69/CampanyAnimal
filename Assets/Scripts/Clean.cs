@@ -13,7 +13,7 @@ public class Clean : MonoBehaviour
     [SerializeField] private Text enterText;
 
     [Header("Input Settings")]
-    [SerializeField, Tooltip("Å‘å“ü—Í‰ñ”")] private int maxCount = 10;
+    [SerializeField, Tooltip("Å‘å“ü—Í‰ñ”")] private int maxCount = 20;
     private int currentCount = 0;
 
     private bool taskCompleted = false;
