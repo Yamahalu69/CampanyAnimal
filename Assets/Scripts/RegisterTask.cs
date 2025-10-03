@@ -56,6 +56,9 @@ public class RegisterTask : MonoBehaviour
     [Header("矢印残り数表示オブジェクト")]
     public GameObject arrowRemainObject;
 
+    [Header("赤枠")]
+    public GameObject redFlame;
+
     [Header("矢印表示の位置")]
     public Transform[] transforms = new Transform[4];
 
@@ -185,6 +188,10 @@ public class RegisterTask : MonoBehaviour
         remainObject.transform.SetParent(canvas.transform);
         remainObject.transform.position = remainTransform.position;
         instantObject.Add(remainObject);
+
+        GameObject flame = Instantiate(redFlame, transforms[0].position, Quaternion.identity);
+        flame.transform.SetParent(canvas.transform);
+        instantObject.Add(flame);
 
         //表示更新
         View();
