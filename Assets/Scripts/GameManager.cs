@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
 
     public TaskManager taskManager;
 
-    private float timer;
-    private bool timeCount =false;
+    private float timer; //タイマー（これで5分はかる）
+    private bool timeCount =false; //ゲーム中のみカウントを進める
 
     public bool spawnTask = false;
     public float randomSpawnMin = 0;
@@ -109,11 +109,17 @@ public class GameManager : MonoBehaviour
 
     private void MakeSpawnTimes()
     {
+        //前陳タスクの発生するタイミングをリストにして作成.
+        //初期化.
         spawnTimeList.Clear();
+        //nullチェック.
         float stopTime = events.FirstOrDefault(e => e.actionEvent == TimeEvent.EventList.StopRandomSpawn)?.triggerTime ?? 0f;
+        //最遅でいつまでスポーンするか計算.
         float maxTime = stopTime - randomSpawnMax;
+        //最大スポーン数で均等割り(基準を求める).
         float multiplyFactor = maxTime / taskManager.randomDipsTaskCount;
 
+        //基準に対して長さをランダムに変化.
         for (int i = 0; i < taskManager.randomDipsTaskCount; i++)
         {
             spawnTimeList.Add(multiplyFactor * (i + 1) + Random.Range(randomSpawnMin, randomSpawnMax));
