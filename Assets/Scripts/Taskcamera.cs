@@ -57,6 +57,8 @@ public class Taskcamera : MonoBehaviour
              maincamera.GetComponent<Camera>().enabled = true;
 
              UiArrow.enabled = true;
+
+            playerimage.enabled = false;
         }
         
     }
