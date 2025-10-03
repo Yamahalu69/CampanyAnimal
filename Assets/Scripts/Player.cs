@@ -140,13 +140,13 @@ public class Player : MonoBehaviour
             }
         }
 
-
+        vec = new Vector3(vector.x, 0, vector.z);
         walkinput = (vector.x != 0 || vector.z != 0);
 
 
         if (vec != Vector3.zero)
         {
-            Vector3 movedirection = new Vector3(vector.x,0f,vector.z);
+            Vector3 movedirection = vec;
 
             Quaternion targetrotation = Quaternion.LookRotation(movedirection);
             transform.rotation = Quaternion.Slerp(transform.rotation,targetrotation,rotation*Time.deltaTime);
