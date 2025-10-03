@@ -6,12 +6,15 @@ public class SliderWithText : MonoBehaviour
 {
     public Slider slider;
     public TMP_Text fillText;
-    public float duration = 60f; //スライダーが60秒で最大まで進
+    public float duration = 60f; //スライダーが60秒で最大まで進む 
     public float showThreshold = 0.4f; //スライダーが40%を超えたら表示
     public float margin = 10f; //テキストと右端の余白
 
     private RectTransform fillRect;
     private float timer = 0f;
+
+    private bool isRunning = true; // スライダー進行中かどうか
+
 
     void Start()
     {
@@ -25,7 +28,7 @@ public class SliderWithText : MonoBehaviour
     void Update()
     {
         // スライダーを60秒で進める
-        if (slider.value < slider.maxValue)
+        if (isRunning && slider.value < slider.maxValue)
         {
             timer += Time.deltaTime;
             slider.value = Mathf.Lerp(slider.minValue, slider.maxValue, timer / duration);
@@ -50,6 +53,8 @@ public class SliderWithText : MonoBehaviour
             fillText.rectTransform.anchoredPosition = anchoredPos;
 
             fillText.text = "お客様メーター";
+
+
         }
         else
         {
@@ -57,5 +62,17 @@ public class SliderWithText : MonoBehaviour
                 fillText.gameObject.SetActive(false);
         }
     }
+       
+    public void StartSlider()
+    {
+        isRunning = true;
+    }
 
+    public void ResetSlider()
+    {
+        timer = 0;
+        slider.value = 0f;
+        fillText.gameObject.SetActive(false);
+        isRunning = false; // リセット後は進行停止
+    }
 }

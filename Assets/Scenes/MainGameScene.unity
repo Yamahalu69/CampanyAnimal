@@ -2252,6 +2252,8 @@ MonoBehaviour:
   slider: {fileID: 2010125312}
   duration: 60
   tm: {fileID: 2032302530}
+  sliderWithText: {fileID: 1281610179}
+  meterColorChanger: {fileID: 1289481749}
 --- !u!1001 &506827688
 PrefabInstance:
   m_ObjectHideFlags: 0

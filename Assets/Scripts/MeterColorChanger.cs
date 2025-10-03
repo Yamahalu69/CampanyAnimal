@@ -32,4 +32,11 @@ public class MeterColorChanger : MonoBehaviour
             fillImage.color = Color.Lerp(startColor, endColor, t);
         }
     }
+
+    public void ResetMeter()
+    {
+        elapsedTime = 0f;
+        slider.value = 0f;
+        fillImage.color = startColor;
+    }
 }

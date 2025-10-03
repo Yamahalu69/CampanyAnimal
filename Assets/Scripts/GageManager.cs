@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using JetBrains.Annotations;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GageManager : MonoBehaviour
@@ -14,33 +15,48 @@ public class GageManager : MonoBehaviour
 
     public TaskManager tm;
 
+    public SliderWithText sliderWithText;
+    public MeterColorChanger meterColorChanger;
+
     void Update()
     {
         bool isActiveNow = targetObject != null && targetObject.activeInHierarchy;
 
-        isActiveNow = tm.existRegisterTask;
+         isActiveNow = tm.existRegisterTask;
 
         // targetObjectが表示された瞬間に初期化＆表示
         if (isActiveNow && !wasActiveFrame)
         {
             Debug.Log("ターゲットが表示され、ゲージをリセット");
-            timeElapsed = 0f;
-            slider.value = 0f;
-            Canvas.ForceUpdateCanvases();
             sliderObject.SetActive(true);
-            isRunning = true;
+            ResetTimer();
+            isRunning = true; 
+
+            if (sliderWithText != null)
+            {
+                sliderWithText.ResetSlider();
+                sliderWithText.StartSlider();
+            }
+
+            if (meterColorChanger != null)
+            {
+                meterColorChanger.ResetMeter();
+            }
         }
 
         // ターゲットが非アクティブになった瞬間（非表示になったとき）
         if (!isActiveNow && wasActiveFrame)
         {
-
             Debug.Log("ターゲットが非表示になった：ゲージをリセット");
-            sliderObject.SetActive(false);   // スライダーを非表示
+            ResetTimer();
             isRunning = false;
-            timeElapsed = 0f;               // 時間リセット
-            slider.value = 0f;        // スライダーの値リセット
-            Canvas.ForceUpdateCanvases();
+
+            if (sliderWithText != null)
+            {
+                sliderWithText.ResetSlider();
+            }
+
+            sliderObject.SetActive(false);   // スライダーを非表示
         }
 
         if (isActiveNow && isRunning)
@@ -62,5 +78,14 @@ public class GageManager : MonoBehaviour
 
         // 前フレームの状態を更新
         wasActiveFrame = isActiveNow;
+    }
+
+    public void ResetTimer()
+    {
+        timeElapsed = 0f;
+        if (slider != null)
+        {
+            slider.value = 0f;
+        }
     }
 }
