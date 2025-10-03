@@ -197,7 +197,7 @@ public class RegisterTask : MonoBehaviour
         View();
     }
 
-    void StopTask()
+    public void StopTask()
     {
         StopAnimation();
         //吹き出しオブジェクトがあるなら削除

@@ -97,6 +97,8 @@ public class GameManager : MonoBehaviour
 
     public void JudgeGameClear()
     {
+        RegisterTask rt = GameObject.Find("Manager").GetComponent<RegisterTask>();
+        rt.StopTask();
         if (taskManager.sensorTextCount == 0)
         {
             GameClear();
@@ -140,6 +142,8 @@ public class GameManager : MonoBehaviour
 
     public void OverWorkGameOver()
     {
+        RegisterTask rt = GameObject.Find("Manager").GetComponent<RegisterTask>();
+        rt.StopTask();
         SceneManager.LoadScene("GameOverSceneOverWork");
         AudioManager.instance.GameoverBGM();
     }
