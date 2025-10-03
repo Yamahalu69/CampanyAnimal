@@ -223,6 +223,7 @@ public class TaskManager : MonoBehaviour
         sensorText.Remove(taskGO);
         Destroy(taskGO);
 
+        //‚¢‚ç‚È‚¢
         if (sensorText.Count == 0)
         {
             CompletedTask();
