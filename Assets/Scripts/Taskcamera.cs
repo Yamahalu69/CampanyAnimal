@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Taskcamera : MonoBehaviour
 {
@@ -14,9 +15,12 @@ public class Taskcamera : MonoBehaviour
 
     [SerializeField] private Display task;
 
+    [SerializeField] private Image playerimage;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerimage.enabled = false;
         UiArrow.enabled = true;
         maincamera.GetComponent<Camera>().enabled = true;
         displaycamera.GetComponent<Camera>().enabled = false;
@@ -38,6 +42,7 @@ public class Taskcamera : MonoBehaviour
             maincamera.GetComponent<Camera>().enabled = false;
             rejistercamera.GetComponent<Camera>().enabled = true;
             UiArrow.enabled = false;
+            playerimage.enabled = true;
         }
         else if(task.crear)
         {
@@ -71,6 +76,7 @@ public class Taskcamera : MonoBehaviour
         maincamera.GetComponent<Camera>().enabled = true;
         rejistercamera.GetComponent<Camera>().enabled = false;
         UiArrow.enabled = true;
+        playerimage.enabled = false;
     }
     
 }
