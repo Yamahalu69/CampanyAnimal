@@ -4299,6 +4299,7 @@ MonoBehaviour:
   displaytask: {fileID: 673789938}
   rejistertask: {fileID: 2032302529}
   UiArrow: {fileID: 1146118591}
+  task: {fileID: 673789939}
 --- !u!4 &1023430151
 Transform:
   m_ObjectHideFlags: 0

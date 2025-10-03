@@ -6,8 +6,7 @@ public class DisplayTask : MonoBehaviour
     [SerializeField] private GameObject[] poteti;
     [SerializeField] private GameObject[] potetiefect;
 
-    //public Transform[] target;
-    //private LineRenderer line;
+    
 
     private int taskcount = 0;
 
@@ -42,7 +41,7 @@ public class DisplayTask : MonoBehaviour
             potetiefect[taskcount].SetActive(false);
             taskcount++;
             task.crear = false;
-            taskcamera.OnCameraInvoke();
+            
         }
         
     }

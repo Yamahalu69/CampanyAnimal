@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Taskcamera : MonoBehaviour
@@ -11,7 +12,7 @@ public class Taskcamera : MonoBehaviour
 
     [SerializeField] private Canvas UiArrow;
 
-    
+    [SerializeField] private Display task;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,27 +39,38 @@ public class Taskcamera : MonoBehaviour
             rejistercamera.GetComponent<Camera>().enabled = true;
             UiArrow.enabled = false;
         }
-        else
+        else if(task.crear)
         {
-            maincamera.GetComponent<Camera>().enabled = true;
-            displaycamera.GetComponent<Camera>().enabled = false;
-            rejistercamera.GetComponent<Camera>().enabled = false;
-            UiArrow.enabled = true;
+            
+            StartCoroutine(Delay(3f));
+
+            
+        }
+        
+        else if(Input.GetKeyUp(KeyCode.Space))
+        {
+             maincamera.GetComponent<Camera>().enabled = true;
+
+             UiArrow.enabled = true;
         }
         
     }
 
+    private IEnumerator Delay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        displaycamera.GetComponent<Camera>().enabled = false;
+
+        maincamera.GetComponent<Camera>().enabled = true;
+
+        UiArrow.enabled = true;
+    }
     public void Rejistercamera()
     {
         maincamera.GetComponent<Camera>().enabled = true;
         rejistercamera.GetComponent<Camera>().enabled = false;
         UiArrow.enabled = true;
     }
-
-    public void OnCameraInvoke()
-    {
-        Invoke("OnCamera", 1.5f);
-    }
-
     
 }
