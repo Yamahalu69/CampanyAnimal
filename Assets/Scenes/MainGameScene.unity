@@ -8416,6 +8416,7 @@ MonoBehaviour:
   canvas: {fileID: 1359619653}
   arrowPrefab: {fileID: 1930627242242049113, guid: 8288f5b38f5b3d9469e7d10dda0d4e9b, type: 3}
   arrowRemainObject: {fileID: 1735281196473943525, guid: b62fe43030c8cc047b033658f26d394b, type: 3}
+  redFlame: {fileID: 5755766947998997283, guid: 7cab24bd48d2904488a1e483a00ba793, type: 3}
   transforms:
   - {fileID: 231561540}
   - {fileID: 273731631}
