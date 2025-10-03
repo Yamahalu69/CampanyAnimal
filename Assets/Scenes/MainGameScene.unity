@@ -2251,6 +2251,7 @@ MonoBehaviour:
   sliderObject: {fileID: 2010125310}
   slider: {fileID: 2010125312}
   duration: 60
+  tm: {fileID: 2032302530}
 --- !u!1001 &506827688
 PrefabInstance:
   m_ObjectHideFlags: 0

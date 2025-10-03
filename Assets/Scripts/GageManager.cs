@@ -6,24 +6,45 @@ public class GageManager : MonoBehaviour
     public GameObject targetObject;  // 表示を監視するオブジェクト
     public GameObject sliderObject;  // スライダーUIのGameObject
     public Slider slider;            // スライダーコンポーネント
-    public float duration = 60f;      // ゲージが満タンになる時間
+    public float duration = 60f;     // ゲージが満タンになる時間
 
     private float timeElapsed = 0f;
     private bool isRunning = false;
+    private bool wasActiveFrame = false; // 前フレームのアクティブ状態
+
+    public TaskManager tm;
+
     void Update()
     {
-        // targetObjectがアクティブならスライダーを表示してゲージを進める
-        if (targetObject != null && targetObject.activeInHierarchy)
-        {
-            if (!isRunning)
-            {
-                // 表示された瞬間にリセット＆表示
-                timeElapsed = 0f;
-                slider.value = 0f;
-                sliderObject.SetActive(true);
-                isRunning = true;
-            }
+        bool isActiveNow = targetObject != null && targetObject.activeInHierarchy;
 
+        isActiveNow = tm.existRegisterTask;
+
+        // targetObjectが表示された瞬間に初期化＆表示
+        if (isActiveNow && !wasActiveFrame)
+        {
+            Debug.Log("ターゲットが表示され、ゲージをリセット");
+            timeElapsed = 0f;
+            slider.value = 0f;
+            Canvas.ForceUpdateCanvases();
+            sliderObject.SetActive(true);
+            isRunning = true;
+        }
+
+        // ターゲットが非アクティブになった瞬間（非表示になったとき）
+        if (!isActiveNow && wasActiveFrame)
+        {
+
+            Debug.Log("ターゲットが非表示になった：ゲージをリセット");
+            sliderObject.SetActive(false);   // スライダーを非表示
+            isRunning = false;
+            timeElapsed = 0f;               // 時間リセット
+            slider.value = 0f;        // スライダーの値リセット
+            Canvas.ForceUpdateCanvases();
+        }
+
+        if (isActiveNow && isRunning)
+        {
             // ゲージを進める
             if (timeElapsed < duration)
             {
@@ -36,15 +57,10 @@ public class GageManager : MonoBehaviour
                 GameManager.instance.OverWorkGameOver();
             }
         }
-        else
-        {
-            // targetObjectが非表示ならスライダーも非表示にして停止
-            if (isRunning)
-            {
-                sliderObject.SetActive(false);
-                isRunning = false;
-                slider.value = 0f;
-            }
-        }
+        
+        
+
+        // 前フレームの状態を更新
+        wasActiveFrame = isActiveNow;
     }
 }
