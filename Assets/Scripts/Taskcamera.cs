@@ -11,7 +11,7 @@ public class Taskcamera : MonoBehaviour
 
     [SerializeField] private Canvas UiArrow;
 
-    [SerializeField] private Display task;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,14 +31,20 @@ public class Taskcamera : MonoBehaviour
             displaycamera.GetComponent<Camera>().enabled = true;
             UiArrow.enabled = false;
         }
-        
+
         else if (rejistertask.isPlaying)
         {
             maincamera.GetComponent<Camera>().enabled = false;
             rejistercamera.GetComponent<Camera>().enabled = true;
             UiArrow.enabled = false;
         }
-        
+        else
+        {
+            maincamera.GetComponent<Camera>().enabled = true;
+            displaycamera.GetComponent<Camera>().enabled = false;
+            rejistercamera.GetComponent<Camera>().enabled = false;
+            UiArrow.enabled = true;
+        }
         
     }
 
@@ -54,10 +60,5 @@ public class Taskcamera : MonoBehaviour
         Invoke("OnCamera", 1.5f);
     }
 
-    void OnCamera()
-    {
-        maincamera.GetComponent<Camera>().enabled = true;
-        displaycamera.GetComponent<Camera>().enabled = false;
-        UiArrow.enabled = true;
-    }
+    
 }
