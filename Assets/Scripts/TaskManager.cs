@@ -79,6 +79,8 @@ public class TaskManager : MonoBehaviour
 
     public int sensorTextCount => sensorText.Count;
 
+    public bool existRegisterTask => sensorText.Keys.Any(go => go.CompareTag("register"));
+
     void Start()
     {
 
