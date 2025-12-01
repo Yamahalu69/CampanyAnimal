@@ -39,6 +39,7 @@ public class PanelChange : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
+                AudioManager.instance.PlayingBGM();
                 SceneManager.LoadScene("MainGameScene");
             }
         }

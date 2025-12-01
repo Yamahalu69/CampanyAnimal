@@ -9,10 +9,11 @@ public class npc_move : MonoBehaviour
 
     public float returnDelay = 30f;
     public float disappearDistance = 0.5f;
-    
+    private Animator ani;
 
     void Start()
     {
+        ani = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         Invoke(nameof(ReturnToSpawn), returnDelay);
     }
@@ -33,6 +34,9 @@ public class npc_move : MonoBehaviour
 
     void Update()
     {
+        float speed = agent.velocity.magnitude;
+        ani.SetFloat("Speed",speed);
+
         if (returning)
         {
             float distance = Vector3.Distance(transform.position, spawnPosition);

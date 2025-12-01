@@ -69,8 +69,10 @@ public class Display : MonoBehaviour
                 Reset();
                 targetToHide.SetActive(false);
                 crear = true;
-                Invoke("Delay", 1.5f);
 
+                prayer.CompleateTask();
+                prayer.dsencer = false;
+                prayer.pl = true;
             }
             else
             {
@@ -94,18 +96,6 @@ public class Display : MonoBehaviour
 
         // === バー位置の更新 ===
         bar.rectTransform.anchoredPosition = new Vector2(initialPos.x, initialPos.y + currentHeight);
-    }
-    void Delay()
-    {
-        
-        prayer.CompleateTask();
-        prayer.dsencer = false;
-        prayer.pl = true; 
-    }
-
-    void EnterDelay()
-    {
-        isInputLocked = true;
     }
     public void Reset()
     {
